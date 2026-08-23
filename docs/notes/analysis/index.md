@@ -6,4 +6,4 @@
 |------|------|------|
 | [数学分析III](analysis3_summary.md) | 5.0 | 大二秋冬 |
 | [实变函数](real_analysis_summary.md) | 3.5 | 大二春夏 |
-| 常微分方程 | 3.5 | 大三秋冬 |
+| [常微分方程](ordinary_differential_equations_summary.md) | 3.5 | 大三秋冬 |

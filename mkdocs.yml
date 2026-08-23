@@ -86,8 +86,8 @@ nav:
       - 课程总结: notes/analysis/analysis3_summary.md
     - 实变函数:
       - 课程总结: notes/analysis/real_analysis_summary.md
-    - 泛函分析（甲）:
-      - 课程总结: notes/analysis/functional_analysis_summary.md
+    - 常微分方程:
+      - 课程总结: notes/analysis/ordinary_differential_equations_summary.md
   - 代数与数论:
     - notes/algebra/index.md
     - 初等数论:
