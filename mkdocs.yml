@@ -78,6 +78,8 @@ nav:
       - 课程总结: notes/math/probability_summary.md
     - 数理统计:
       - 课程总结: notes/math/stats_summary.md
+    - 随机过程:
+      - 课程总结: notes/math/stochastic_processes_summary.md
     - 高等概率论:
       - 课程总结: notes/math/advanced_probability_summary.md
   - 分析与方程:
