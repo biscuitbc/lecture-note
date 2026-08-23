@@ -78,7 +78,6 @@ nav:
       - 课程总结: notes/math/probability_summary.md
     - 数理统计:
       - 课程总结: notes/math/stats_summary.md
-      - Cramér-Rao 下界: notes/math/cramer_rao.md
     - 高等概率论:
       - 课程总结: notes/math/advanced_probability_summary.md
   - 分析与方程:
