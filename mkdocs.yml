@@ -3,8 +3,8 @@ site_url: https://note.biscuitbc.top
 site_author: biscuitbc
 site_description: 技术笔记与学习记录
 
-repo_name: biscuitbc/biscuitbc.github.io
-repo_url: https://github.com/biscuitbc/biscuitbc.github.io
+repo_name: lecture-note
+repo_url: https://github.com/biscuitbc/lecture-note
 
 theme:
   name: material
