@@ -95,6 +95,10 @@ nav:
       - 练习题: notes/algebra/ent_exercises.md
   - 理论计算机科学:
     - notes/tcs/index.md
+    - 理论计算机科学导引:
+      - 课程总结: notes/tcs/theoretical_computer_science_intro_summary.md
+    - 应用运筹学基础:
+      - 课程总结: notes/tcs/applied_operations_research_summary.md
   - 计算机系统架构:
     - notes/arch/index.md
   - 关于: about.md
