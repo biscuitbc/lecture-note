@@ -97,6 +97,7 @@ nav:
     - notes/tcs/index.md
     - 理论计算机科学导引:
       - 课程总结: notes/tcs/theoretical_computer_science_intro_summary.md
+      - 课程笔记: notes/tcs/theoretical_computer_science_intro_notes.md
     - 应用运筹学基础:
       - 课程总结: notes/tcs/applied_operations_research_summary.md
   - 计算机系统架构:
