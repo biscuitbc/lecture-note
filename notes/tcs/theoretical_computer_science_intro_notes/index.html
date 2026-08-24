@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="../../../stylesheets/pdf.css">
     
+      <link rel="stylesheet" href="../../../stylesheets/tcs.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -3497,6 +3499,8 @@
 <p>全文约定</p>
 <div class="arithmatex">\[\mathbb{N}=\{0,1,2,\ldots\},\qquad \Sigma=\{0,1\}.\]</div>
 <h3 id="11">1.1　二进制串与编码<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 1.1（二进制串）.</strong> <span id="def:binary-string"></span> 对任意 <span class="arithmatex">\(n\in\mathbb{N}\)</span>，定义</p>
 <div class="arithmatex">\[\Sigma^n=\{(a_1,\ldots,a_n):a_i\in\Sigma\}.\]</div>
 <p>特别地，<span class="arithmatex">\(\Sigma^0=\{\varepsilon\}\)</span>，其中 <span class="arithmatex">\(\varepsilon\)</span> 表示空串（empty string）。记</p>
@@ -3505,15 +3509,25 @@
     \Sigma^+=\Sigma^*\setminus\{\varepsilon\}.\]</div>
 <p>对 <span class="arithmatex">\(x\in\Sigma^n\)</span>，记其长度为 <span class="arithmatex">\(\lvert x\rvert=n\)</span>。</p>
 <p>对 <span class="arithmatex">\(x,y\in\Sigma^*\)</span>，把二者的串联记为 <span class="arithmatex">\(xy\)</span>。如果存在 <span class="arithmatex">\(z\in\Sigma^*\)</span> 使得 <span class="arithmatex">\(y=xz\)</span>，则称 <span class="arithmatex">\(x\)</span> 是 <span class="arithmatex">\(y\)</span> 的<em>前缀</em>（prefix）。 如果还能取到 <span class="arithmatex">\(z\neq\varepsilon\)</span>，则称 <span class="arithmatex">\(x\)</span> 是 <span class="arithmatex">\(y\)</span> 的<em>真前缀</em> （proper prefix）。</p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 1.2（编码）.</strong> <span id="def:encoding"></span> 集合 <span class="arithmatex">\(A\)</span> 上的一个（二进制）<em>编码</em>（encoding）是单射 （injective map）</p>
 <div class="arithmatex">\[E:A\longrightarrow\Sigma^*.\]</div>
 <p>这里，单射是指：对任意 <span class="arithmatex">\(x,y\in A\)</span>，若 <span class="arithmatex">\(E(x)=E(y)\)</span>，则 <span class="arithmatex">\(x=y\)</span>。</p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 1.1.</strong> <span id="ex:pair-encoding"></span> 令 <span class="arithmatex">\(b(n)\)</span> 为自然数 <span class="arithmatex">\(n\)</span> 的标准二进制表示，并尝试用</p>
 <div class="arithmatex">\[P(a,b)=b(a)b(b)\]</div>
 <p>编码 <span class="arithmatex">\(\mathbb{N}\times\mathbb{N}\)</span>。这个映射不是单射。例如</p>
 <div class="arithmatex">\[P(1,6)=1\,110=1110=11\,10=P(3,2).\]</div>
 <p>问题在于直接串联后无法确定两个分量的分界位置。因此我们要考虑一种更优秀的编码，来避免这个问题。</p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 1.3（前缀不冲突编码）.</strong> <span id="def:prefix-free"></span> 编码 <span class="arithmatex">\(E:A\to\Sigma^+\)</span> 称为<em>前缀不冲突的</em>（prefix-free），如果对任意不同的 <span class="arithmatex">\(x,y\in A\)</span>，码字 <span class="arithmatex">\(E(x)\)</span> 都不是 <span class="arithmatex">\(E(y)\)</span> 的前缀。</p>
+</div>
 <p>记 <span class="arithmatex">\(A^*\)</span> 为由 <span class="arithmatex">\(A\)</span> 中元素组成的所有有限序列的集合，其空序列仍记为 <span class="arithmatex">\(\varepsilon\)</span>。对映射 <span class="arithmatex">\(E:A\to\Sigma^*\)</span>，定义其逐项串联扩张</p>
 <p><span id="eq:concatenation-extension"></span></p>
 <div class="arithmatex">\[\tag{1.1}
@@ -3523,7 +3537,12 @@
     \varepsilon, &amp; n=0.
   \end{cases}\]</div>
 <p>这个定义很自然，我们要说明这个自然定义确实是个单射。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>引理 1.1.</strong> <span id="lem:prefix-extension-injective"></span> 若 <span class="arithmatex">\(E:A\to\Sigma^+\)</span> 是前缀不冲突编码，则由 <a href="#eq:concatenation-extension">式 1.1</a> 定义的 <span class="arithmatex">\(\overline E:A^*\to\Sigma^*\)</span> 是单射。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 假设两组序列的编码相同：</p>
 <div class="arithmatex">\[\overline E(a_1,\ldots,a_p)
     =\overline E(b_1,\ldots,b_q).\]</div>
@@ -3533,8 +3552,14 @@
 <p>两边消去首个码字并归纳，得到</p>
 <div class="arithmatex">\[p=q,\qquad a_i=b_i\quad(1\leq i\leq p).\]</div>
 <p>故 <span class="arithmatex">\(\overline E\)</span> 是单射。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 1.1（构造前缀不冲突编码）.</strong> <span id="thm:prefix-free-construction"></span> 若存在编码 <span class="arithmatex">\(E:A\to\Sigma^*\)</span>，则存在前缀不冲突编码 <span class="arithmatex">\(E_{\mathrm{pf}}:A\to\Sigma^+\)</span>，并且对每个 <span class="arithmatex">\(a\in A\)</span> 都有</p>
 <div class="arithmatex">\[\lvert E_{\mathrm{pf}}(a)\rvert=2\lvert E(a)\rvert+2.\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 定义 <span class="arithmatex">\(h(0)=00\)</span>、<span class="arithmatex">\(h(1)=11\)</span>，并令 <span class="arithmatex">\(h\)</span> 逐位作用于二进制串。取</p>
 <div class="arithmatex">\[E_{\mathrm{pf}}(a)=h(E(a))01,
     \qquad
@@ -3544,7 +3569,13 @@
     \implies E(a)=E(b)
     \implies a=b.\]</div>
 <p>因此 <span class="arithmatex">\(E_{\mathrm{pf}}\)</span> 前缀不冲突。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-question">
+<p class="admonition-title">Tcs-question</p>
 <p><strong>思考题.</strong> 能否把长度开销改进到 <span class="arithmatex">\(\lvert E(a)\rvert+O(\log \lvert E(a)\rvert)\)</span>？</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>解答.</strong> 可以。令</p>
 <div class="arithmatex">\[n=\lvert E(a)\rvert,\qquad
     \ell=\lvert \operatorname{bin}(n+1)\rvert,\]</div>
@@ -3563,12 +3594,30 @@
     =n+2\lfloor\log_2(n+1)\rfloor+3
     =n+O(\log(n+1)).\]</div>
 <p><span class="arithmatex">\(L(n)\)</span> 自定界；当 <span class="arithmatex">\(n\)</span> 相同时，<span class="arithmatex">\(E'(a)\)</span> 等长。因此该构造前缀不冲突。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 1.1.</strong> <span id="cor:sequence-encoding"></span> 若存在编码 <span class="arithmatex">\(E:A\to\Sigma^*\)</span>，则存在编码 <span class="arithmatex">\(F:A^*\to\Sigma^*\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 先用<a href="#thm:prefix-free-construction">定理 1.1</a>把 <span class="arithmatex">\(E\)</span> 改造成前缀不冲突编码，再用 <a href="#lem:prefix-extension-injective">引理 1.1</a>逐项串联即可。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="12">1.2　可数集合<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 1.4（至多可数）.</strong> <span id="def:countable"></span> 如果存在单射 <span class="arithmatex">\(f:A\to\mathbb{N}\)</span>，则称集合 <span class="arithmatex">\(A\)</span> 是<em>至多可数的</em> （at most countable）。换言之，<span class="arithmatex">\(A\)</span> 或者是有限集，或者可以与自然数集 <span class="arithmatex">\(\mathbb{N}\)</span> 建立双射（bijection）。当 <span class="arithmatex">\(A\neq\varnothing\)</span> 时，这也等价于存在满射（surjection）<span class="arithmatex">\(g:\mathbb{N}\to A\)</span>。</p>
+</div>
+<div class="admonition tcs-remark">
+<p class="admonition-title">Tcs-remark</p>
 <p><strong>注.</strong> 非空条件只用于满射表述，因为不存在 <span class="arithmatex">\(\mathbb{N}\to\varnothing\)</span>。有些文献把本文的"至多可数"简称为"可数"。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>引理 1.2.</strong> <span id="lem:binary-strings-countable"></span> <span class="arithmatex">\(\Sigma^*\)</span> 是可数无限集。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 对 <span class="arithmatex">\(x\in\Sigma^n\)</span>，令 <span class="arithmatex">\(\operatorname{val}_2(x)\)</span> 为其二进制数值（允许前导零），并定义</p>
 <div class="arithmatex">\[\nu(x)=2^n-1+\operatorname{val}_2(x).\]</div>
 <p>于是</p>
@@ -3576,20 +3625,35 @@
     \qquad
     \mathbb{N}=\bigsqcup_{n\geq0}\nu(\Sigma^n).\]</div>
 <p>故 <span class="arithmatex">\(\nu:\Sigma^*\to\mathbb{N}\)</span> 是双射。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 1.2（可编码性与可数性）.</strong> <span id="thm:encodable-iff-countable"></span> 集合 <span class="arithmatex">\(A\)</span> 至多可数，当且仅当存在编码 <span class="arithmatex">\(E:A\to\Sigma^*\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 由<a href="#lem:binary-strings-countable">引理 1.2</a>，存在双射 <span class="arithmatex">\(\nu:\Sigma^*\to\mathbb{N}\)</span>。</p>
 <p>若 <span class="arithmatex">\(E:A\to\Sigma^*\)</span> 是单射，则</p>
 <div class="arithmatex">\[\nu\circ E:A\to\mathbb{N}\]</div>
 <p>也是单射。反之，若 <span class="arithmatex">\(f:A\to\mathbb{N}\)</span> 是单射，令 <span class="arithmatex">\(c(n)=1^n0\)</span>，则</p>
 <div class="arithmatex">\[c\circ f:A\to\Sigma^*\]</div>
 <p>是一个编码。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="13">1.3　问题的公理化定义<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
 <p>因为我们已经有编码了，所以我们可以把问题公理化了。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 1.5（问题）.</strong> <span id="def:problem"></span> 在本讲义中，一个（计算）<em>问题</em>（computational problem）是函数</p>
 <div class="arithmatex">\[f:\Sigma^*\longrightarrow\Sigma^*.\]</div>
 <p>所有问题构成的集合记为</p>
 <div class="arithmatex">\[\mathcal{P}=(\Sigma^*)^{\Sigma^*}.\]</div>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 1.3.</strong> <span id="thm:problems-uncountable"></span> 问题集合 <span class="arithmatex">\(\mathcal{P}\)</span> 不可数。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明（Cantor 对角化）.</strong> 由<a href="#lem:binary-strings-countable">引理 1.2</a>，可写</p>
 <div class="arithmatex">\[\Sigma^*=\{s_0,s_1,s_2,\ldots\}.\]</div>
 <p>反设 <span class="arithmatex">\(\mathcal P=\{f_0,f_1,f_2,\ldots\}\)</span>。定义</p>
@@ -3602,6 +3666,7 @@
 <div class="arithmatex">\[\forall i\in\mathbb{N},\quad g(s_i)\neq f_i(s_i)
     \implies g\neq f_i.\]</div>
 <p>于是 <span class="arithmatex">\(g\in\mathcal P\)</span> 却不在上述枚举中，矛盾。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h2 id="chap:boolean-circuits">第 2 章　布尔电路<a class="headerlink" href="#chap:boolean-circuits" title="Permanent link">&para;</a></h2>
 <p>布尔电路（Boolean circuit）用有限个逻辑门（logic gate）把输入比特（bit） 变成输出比特。本讲使用三种基本逻辑门：与门（AND）、或门（OR）和非门（NOT）。</p>
 <h3 id="21">2.1　电路模型<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
@@ -3618,13 +3683,22 @@
 </li>
 </ol>
 <p>AND 和 OR 门各有两个输入，NOT 门有一个输入。因为图中没有有向环，所以各个门可以按拓扑顺序（topological order）依次求值。电路的<em>规模</em> （size）是其中逻辑门的数量，记为 <span class="arithmatex">\(\lvert C\rvert\)</span>。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 2.1（电路计算）.</strong> <span id="def:circuit-computes"></span> 设 <span class="arithmatex">\(f:\{0,1\}^n\to\{0,1\}^m\)</span>。如果对每个输入 <span class="arithmatex">\(x\in\{0,1\}^n\)</span>，电路 <span class="arithmatex">\(C\)</span> 的 <span class="arithmatex">\(m\)</span> 个输出比特恰好组成 <span class="arithmatex">\(f(x)\)</span>，则称 <span class="arithmatex">\(C\)</span> <em>计算</em>函数 <span class="arithmatex">\(f\)</span>。</p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 2.1.</strong> <span id="ex:xor-circuit"></span> 异或函数（exclusive OR, XOR）可以写成</p>
 <div class="arithmatex">\[\operatorname{XOR}(a,b)
     =\neg(a\land b)\land(a\lor b),\]</div>
 <p>因而可以用 AND、OR 和 NOT 门组成的布尔电路计算。</p>
+</div>
 <h3 id="22-aon-circ-nand">2.2　AON-Circ 程序与 NAND 门<a class="headerlink" href="#22-aon-circ-nand" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 2.2（AON-Circ 程序）.</strong> <span id="def:aon-circ-program"></span> AON-Circ 程序是一列按顺序执行的赋值语句（assignment statement）。 每条语句调用一次 AND、OR 或 NOT，并且只能读取输入变量或此前语句已经算出的变量。程序最后指定 <span class="arithmatex">\(m\)</span> 个变量作为输出。程序的规模是赋值语句的行数。</p>
+</div>
 <p>例如，一条语句可以具有以下三种形式之一：</p>
 <div class="arithmatex">\[z_i\gets z_j\land z_k,
   \qquad
@@ -3632,8 +3706,14 @@
   \qquad
   z_i\gets\neg z_j,\]</div>
 <p>其中右侧的变量必须已经定义。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 2.1.</strong> <span id="thm:circuit-program-equivalence"></span> 函数 <span class="arithmatex">\(f\)</span> 能由布尔电路计算，当且仅当它能由 AON-Circ 程序计算。两种表示可以保持规模不变：电路的门数等于对应程序的行数。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 给定电路，按拓扑顺序为每个门写一条赋值语句，即得到 AON-Circ 程序。 反过来，为程序的每一行建立一个门，并把该行读取的变量连接到这个门， 即得到布尔电路。每个门与每行语句一一对应。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>与非门（NAND）定义为</p>
 <div class="arithmatex">\[\operatorname{NAND}(a,b)=\neg(a\land b).\]</div>
 <p>只使用 NAND 门便可实现三个基本门：</p>
@@ -3655,10 +3735,13 @@
   \qquad
   \lvert C_{\mathrm{NAND}}\rvert\leq 3\lvert C_{\mathrm{AON}}\rvert.\]</div>
 <h3 id="23">2.3　任意布尔函数的电路实现<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 2.2.</strong> <span id="thm:all-boolean-functions-have-circuits"></span> 对任意 <span class="arithmatex">\(n,m\geq 1\)</span> 以及任意函数</p>
 <div class="arithmatex">\[f:\{0,1\}^n\longrightarrow\{0,1\}^m,\]</div>
 <p>都存在计算 <span class="arithmatex">\(f\)</span> 的布尔电路。进一步，电路规模可以达到</p>
 <div class="arithmatex">\[\lvert C\rvert=O\!\left(\frac{m2^n}{n}\right).\]</div>
+</div>
 <h6 id="_2">粗略上界的构造.<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h6>
 <p>先考虑 <span class="arithmatex">\(f\)</span> 的第 <span class="arithmatex">\(j\)</span> 个输出比特 <span class="arithmatex">\(f_j\)</span>。对每个 <span class="arithmatex">\(a=(a_0,\ldots,a_{n-1})\in\{0,1\}^n\)</span>，定义</p>
 <div class="arithmatex">\[T_a(x)=\bigwedge_{r=0}^{n-1}\ell_{a,r}(x_r),
@@ -3673,7 +3756,10 @@
 <p>这就是析取范式（disjunctive normal form, DNF）的直接构造。每个 <span class="arithmatex">\(T_a\)</span> 使用 <span class="arithmatex">\(O(n)\)</span> 个门，而这样的项至多有 <span class="arithmatex">\(2^n\)</span> 个，所以一个输出比特需要 <span class="arithmatex">\(O(n2^n)\)</span> 个门。分别构造 <span class="arithmatex">\(m\)</span> 个输出，便得到</p>
 <div class="arithmatex">\[\lvert C\rvert=O(mn2^n).\]</div>
 <p><a href="#thm:all-boolean-functions-have-circuits">定理 2.2</a>中的 <span class="arithmatex">\(O(m2^n/n)\)</span> 上界去掉了这个直接构造中的冗余。这个更精细的上界将在后文证明。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 2.3（通用门组）.</strong> <span id="def:universal-gate-set"></span> 如果只使用门集合 <span class="arithmatex">\(\mathcal F\)</span> 中的门就能计算任意布尔函数，则称 <span class="arithmatex">\(\mathcal F\)</span> 是<em>通用的</em>（universal）。</p>
+</div>
 <p>由<a href="#thm:all-boolean-functions-have-circuits">定理 2.2</a>和上面的三个恒等式，NAND 门本身就是通用的。因此，要判断一组门 <span class="arithmatex">\(\mathcal F\)</span> 是否通用，只需判断能否仅用 <span class="arithmatex">\(\mathcal F\)</span> 中的门实现 NAND 函数。</p>
 <p>为了证明<a href="#thm:all-boolean-functions-have-circuits">定理 2.2</a>，我们先来介绍一些特性和例子。</p>
 <h4 id="231-nand-circ-syntactic-sugar">2.3.1　NAND-Circ 程序中的语法糖（syntactic sugar）<a class="headerlink" href="#231-nand-circ-syntactic-sugar" title="Permanent link">&para;</a></h4>
@@ -3694,6 +3780,8 @@
   =(\neg b\land u)\lor(b\land v),\]</div>
 <p>其中 <span class="arithmatex">\(b=0\)</span> 时输出 <span class="arithmatex">\(u\)</span>，<span class="arithmatex">\(b=1\)</span> 时输出 <span class="arithmatex">\(v\)</span>。循环次数和过程参数一旦固定， 上述写法都能展开成普通的 NAND-Circ 程序，因此不会增强计算能力。</p>
 <h4 id="232-add-lookup">2.3.2　ADD 与 LOOKUP<a class="headerlink" href="#232-add-lookup" title="Permanent link">&para;</a></h4>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 2.2（ADD）.</strong> <span id="ex:add-circuit"></span> 输入包含两个 <span class="arithmatex">\(n\)</span> 位二进制数。按从低位到高位的顺序，将它们分别记为</p>
 <div class="arithmatex">\[(x_0,\ldots,x_{n-1}),
     \qquad
@@ -3713,6 +3801,9 @@ result[n] = carry[n]
 return result
 </code></pre></div>
 <p>XOR 和 MAJ 都能用常数个 NAND 门实现。把循环展开后，程序共有 <span class="arithmatex">\(O(n)\)</span> 行，因而加法电路的规模为 <span class="arithmatex">\(O(n)\)</span>。</p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 2.3（LOOKUP）.</strong> <span id="ex:lookup-circuit"></span> 输入由 <span class="arithmatex">\(2^k\)</span> 个数据比特 <span class="arithmatex">\(x_0,\ldots,x_{2^k-1}\)</span> 和 <span class="arithmatex">\(k\)</span> 个索引比特 <span class="arithmatex">\(i_0,\ldots,i_{k-1}\)</span> 组成。令</p>
 <div class="arithmatex">\[j=\sum_{r=0}^{k-1}i_r2^{k-1-r}.\]</div>
 <p>查表函数（lookup function）返回第 <span class="arithmatex">\(j\)</span> 个数据比特：</p>
@@ -3736,7 +3827,10 @@ return result
     \qquad
     L(1)=O(1).\]</div>
 <p>因此 <span class="arithmatex">\(L(k)=O(2^k)\)</span>，LOOKUP 电路的规模也是 <span class="arithmatex">\(O(2^k)\)</span>。</p>
+</div>
 <h4 id="233">2.3.3　精细上界<a class="headerlink" href="#233" title="Permanent link">&para;</a></h4>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong><a href="#thm:all-boolean-functions-have-circuits">定理 2.2</a>的精细上界证明.</strong> 先考虑单输出函数 <span class="arithmatex">\(f:\{0,1\}^n\to\{0,1\}\)</span>。取 <span class="arithmatex">\(k&lt;n\)</span>，并把输入写成</p>
 <div class="arithmatex">\[x=(u,v),
     \qquad
@@ -3778,11 +3872,17 @@ return result
 <p>同时 <span class="arithmatex">\(k2^k=O(n\log n)=O(2^n/n)\)</span>，故 <a href="#eq:refined-upper-bound-cost">式 2.1</a>为 <span class="arithmatex">\(O(2^n/n)\)</span>。 有限多个较小的 <span class="arithmatex">\(n\)</span> 可以吸收到大 <span class="arithmatex">\(O\)</span> 的常数中。最后对 <span class="arithmatex">\(m\)</span> 个输出位分别使用这一构造，即得</p>
 <div class="arithmatex">\[\lvert C\rvert=O\!\left(\frac{m2^n}{n}\right).\]</div>
 <p><span class="arithmatex">\(\square\)</span></p>
+</div>
 <h4 id="234">2.3.4　计数下界<a class="headerlink" href="#234" title="Permanent link">&para;</a></h4>
 <p>下面用计数论证（counting argument）说明上述关于 <span class="arithmatex">\(n\)</span> 的上界不能继续改进到更低的数量级。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>命题 2.1（布尔函数的电路下界）.</strong> <span id="prop:boolean-circuit-counting-lower-bound"></span> 存在常数 <span class="arithmatex">\(c_0&gt;0\)</span>，使得对所有充分大的 <span class="arithmatex">\(n\)</span>，都有某个函数 <span class="arithmatex">\(f:\{0,1\}^n\to\{0,1\}\)</span> 的任意布尔电路至少需要</p>
 <div class="arithmatex">\[c_0\frac{2^n}{n}\]</div>
 <p>个逻辑门。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 一共有</p>
 <div class="arithmatex">\[2^{2^n}\]</div>
 <p>个函数 <span class="arithmatex">\(\{0,1\}^n\to\{0,1\}\)</span>。另一方面，设一个 NAND-Circ 程序至多有 <span class="arithmatex">\(s\)</span> 行，并考虑 <span class="arithmatex">\(s\geq n\)</span> 的情形。程序中至多出现 <span class="arithmatex">\(n+s\leq 2s\)</span> 个值。 即使把每行都宽松地记为一个三元组，并把所有不合法的三元组序列也计算在内，仍存在常数 <span class="arithmatex">\(c\geq 1\)</span>，使这类程序的数量至多为</p>
@@ -3794,6 +3894,7 @@ return result
     \qquad
     2^{cs\log_2s}&lt;2^{2^n}.\]</div>
 <p>程序少于函数，故至少有一个函数不能由 <span class="arithmatex">\(s\)</span> 行以内的 NAND-Circ 程序计算。再由 NAND 门与 AND、OR、NOT 门之间的常数规模转换，结论成立。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>因此，<a href="#thm:all-boolean-functions-have-circuits">定理 2.2</a>给出的 <span class="arithmatex">\(O(2^n/n)\)</span> 单输出上界在常数因子意义下是紧的。</p>
 <h3 id="24">2.4　程序编码与通用求值<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
 <p>下面约定 <span class="arithmatex">\(s\geq\max\{n,m,2\}\)</span>。一个含 <span class="arithmatex">\(s\)</span> 行、<span class="arithmatex">\(n\)</span> 个输入和 <span class="arithmatex">\(m\)</span> 个输出的 NAND-Circ 程序至多需要 <span class="arithmatex">\(3s\)</span> 个变量。把它们依次编号为</p>
@@ -3803,6 +3904,8 @@ return result
   \qquad
   v_a\gets\operatorname{NAND}(v_b,v_c).\]</div>
 <p>令 <span class="arithmatex">\(\ell=\lceil\log_2(3s)\rceil\)</span>。每个下标用 <span class="arithmatex">\(\ell\)</span> 位表示，故整个程序可以编码为长度 <span class="arithmatex">\(3s\ell\)</span> 的二进制串。</p>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 2.4（通用求值函数）.</strong> <span id="ex:universal-evaluation"></span> 定义通用求值函数（universal evaluation function）</p>
 <div class="arithmatex">\[\operatorname{EVAL}_{s,n,m}:
     \{0,1\}^{3s\ell+n}\longrightarrow\{0,1\}^m.\]</div>
@@ -3812,8 +3915,14 @@ return result
       P(x), &amp; p\text{ 编码了合法程序 }P,\\
       0^m,  &amp; \text{否则}.
     \end{cases}\]</div>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 2.3（通用 NAND-Circ 程序）.</strong> <span id="thm:universal-nand-circ-program"></span> 对任意 <span class="arithmatex">\(s\geq\max\{n,m,2\}\)</span>，都存在计算 <span class="arithmatex">\(\operatorname{EVAL}_{s,n,m}\)</span> 的 NAND-Circ 程序 <span class="arithmatex">\(U_{s,n,m}\)</span>，并且</p>
 <div class="arithmatex">\[\lvert U_{s,n,m}\rvert=O(s^2\log s).\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 以下出现的 LOOKUP、MUX 与等值测试都按前文展开为 NAND 门。 用 <span class="arithmatex">\(V\in\{0,1\}^{3s}\)</span> 保存被模拟程序的全部变量值。首先令</p>
 <div class="arithmatex">\[V^{(0)}=(x_0,\ldots,x_{n-1},0,\ldots,0).\]</div>
 <p>对一个用 <span class="arithmatex">\(\ell\)</span> 位表示的下标 <span class="arithmatex">\(i\)</span>，将 <span class="arithmatex">\(V\)</span> 补零到长度 <span class="arithmatex">\(2^\ell\)</span>，再调用 <a href="#ex:lookup-circuit">例 2.3</a>，即可实现</p>
@@ -3834,7 +3943,11 @@ return result
     V^{(t)}&amp;=\operatorname{UPDATE}(V^{(t-1)},a_t,z_t).
   \end{aligned}\]</div>
 <p>每轮使用 <span class="arithmatex">\(O(s\log s)\)</span> 个门，模拟 <span class="arithmatex">\(s\)</span> 行共需 <span class="arithmatex">\(O(s^2\log s)\)</span> 个门。 同时维护"变量是否已经定义"的比特，并检查下标范围、读取顺序和输出是否已定义，只会使每轮多出常数次 GET、UPDATE 与等值测试。最后用合法性比特屏蔽输出：合法时输出 <span class="arithmatex">\(V_n^{(s)},\ldots,V_{n+m-1}^{(s)}\)</span>，否则输出 <span class="arithmatex">\(0^m\)</span>。总规模仍为 <span class="arithmatex">\(O(s^2\log s)\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-question">
+<p class="admonition-title">Tcs-question</p>
 <p><strong>思考题.</strong> 能否把<a href="#thm:universal-nand-circ-program">定理 2.3</a>的规模改进到 <span class="arithmatex">\(O(s\log s)\)</span>？</p>
+</div>
 <h2 id="chap:boolean-functions-and-languages">第 3 章　布尔函数与语言<a class="headerlink" href="#chap:boolean-functions-and-languages" title="Permanent link">&para;</a></h2>
 <h3 id="31">3.1　从一般函数到布尔函数<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
 <p>一般的计算问题是函数</p>
@@ -3851,15 +3964,23 @@ b_f(x,i,c)=
     0,      &amp; i\geq\lvert f(x)\rvert.
   \end{cases}\]</div>
 <p>这里从 <span class="arithmatex">\(0\)</span> 开始给输出位编号。自然数 <span class="arithmatex">\(i\)</span> 和三元组 <span class="arithmatex">\((x,i,c)\)</span> 均使用固定的二进制编码；具体选用哪一种合理编码，不影响下面的可计算性结论。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>引理 3.1（逐位查询与原函数等价）.</strong> <span id="lem:bit-query-computability"></span> 函数 <span class="arithmatex">\(f\)</span> 可计算，当且仅当 <span class="arithmatex">\(b_f\)</span> 可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 若有计算 <span class="arithmatex">\(f\)</span> 的程序，先算出 <span class="arithmatex">\(y=f(x)\)</span>，再按 <a href="#eq:bit-query-function">式 3.1</a> 回答查询，即可计算 <span class="arithmatex">\(b_f\)</span>。</p>
 <p>反过来，注意到</p>
 <div class="arithmatex">\[b_f(x,i,1)=1\iff i&lt;\lvert f(x)\rvert,
     \qquad
     f(x)_i=b_f(x,i,0)\quad(i&lt;\lvert f(x)\rvert).\]</div>
 <p>从 <span class="arithmatex">\(i=0\)</span> 开始依次查询 <span class="arithmatex">\(b_f(x,i,1)\)</span>。只要结果为 <span class="arithmatex">\(1\)</span>，就把 <span class="arithmatex">\(b_f(x,i,0)\)</span> 追加到输出；第一次得到 <span class="arithmatex">\(0\)</span> 时停止。所得字符串恰为 <span class="arithmatex">\(f(x)\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>因此，讨论一般字符串函数的可计算性，可以归约为讨论布尔函数的可计算性。</p>
 <h3 id="32">3.2　语言与布尔函数<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 3.1（语言与示性函数）.</strong> <span id="def:language-characteristic-function"></span> 一个<em>语言</em>（language）是二进制串集合 <span class="arithmatex">\(A\subseteq\{0,1\}^{*}\)</span>。 对布尔函数 <span class="arithmatex">\(f:\{0,1\}^{*}\to\{0,1\}\)</span>，定义</p>
 <div class="arithmatex">\[A_f=\{x\in\{0,1\}^{*}:f(x)=1\}.\]</div>
 <p>反过来，语言 <span class="arithmatex">\(A\)</span> 的<em>示性函数</em>（characteristic function）定义为</p>
@@ -3868,17 +3989,23 @@ b_f(x,i,c)=
       1, &amp; x\in A,\\
       0, &amp; x\notin A.
     \end{cases}\]</div>
+</div>
 <p>上述两个变换互为逆映射。因此布尔函数与语言一一对应，并且</p>
 <div class="arithmatex">\[f(x)=1\iff x\in A_f.\]</div>
 <h2 id="chap:automata">第 4 章　自动机<a class="headerlink" href="#chap:automata" title="Permanent link">&para;</a></h2>
 <p>自动机（automaton）用有限状态描述对输入串的逐位计算。本章先研究确定有限自动机，再引入非确定有限自动机。</p>
 <h3 id="41">4.1　确定有限自动机<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 4.1（奇偶校验）.</strong> <span id="ex:parity-dfa"></span> 对 <span class="arithmatex">\(x=x_0x_1\cdots x_{n-1}\in\{0,1\}^{*}\)</span>，定义</p>
 <div class="arithmatex">\[\operatorname{PARITY}(x)=x_0\mathbin{\mathsf{xor}}x_1
       \mathbin{\mathsf{xor}}\cdots\mathbin{\mathsf{xor}}x_{n-1}.\]</div>
 <p>并约定 <span class="arithmatex">\(\operatorname{PARITY}(\varepsilon)=0\)</span>。</p>
 <p>下面的自动机中，<span class="arithmatex">\(q_0\)</span> 表示目前读到偶数个 <span class="arithmatex">\(1\)</span>，<span class="arithmatex">\(q_1\)</span> 表示目前读到奇数个 <span class="arithmatex">\(1\)</span>。接受状态为 <span class="arithmatex">\(q_1\)</span>。</p>
 <p><img alt="奇偶校验确定有限自动机" src="../assets/tcs_parity_dfa.svg" /></p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 4.1（确定有限自动机）.</strong> <span id="def:dfa"></span> 一个<em>确定有限自动机</em>（deterministic finite automaton, DFA）是四元组</p>
 <div class="arithmatex">\[M=(K,s,F,\delta),\]</div>
 <p>其中：</p>
@@ -3901,6 +4028,9 @@ b_f(x,i,c)=
     \qquad
     s_{i+1}=\delta(s_i,x_i)\quad(0\leq i&lt;n).\]</div>
 <p>若 <span class="arithmatex">\(s_n\in F\)</span>，则称 <span class="arithmatex">\(M\)</span> 接受 <span class="arithmatex">\(x\)</span>；否则称 <span class="arithmatex">\(M\)</span> 拒绝 <span class="arithmatex">\(x\)</span>。</p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 4.2（计算函数与判定语言）.</strong> <span id="def:dfa-compute-decide"></span> 设 <span class="arithmatex">\(f:\{0,1\}^{*}\to\{0,1\}\)</span>，<span class="arithmatex">\(A\subseteq\{0,1\}^{*}\)</span>。</p>
 <ul>
 <li>
@@ -3910,15 +4040,30 @@ b_f(x,i,c)=
 <p>如果对每个 <span class="arithmatex">\(x\)</span>，<span class="arithmatex">\(M\)</span> 接受 <span class="arithmatex">\(x\)</span> 当且仅当 <span class="arithmatex">\(x\in A\)</span>，则称 <span class="arithmatex">\(M\)</span> <em>判定</em> <span class="arithmatex">\(A\)</span>。</p>
 </li>
 </ul>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 4.3（DFA 的语言与正则语言）.</strong> <span id="def:regular-language"></span> DFA <span class="arithmatex">\(M\)</span> 接受的全部字符串构成它的语言</p>
 <div class="arithmatex">\[L(M)=\{x\in\{0,1\}^{*}:M\text{ 接受 }x\}.\]</div>
 <p>如果存在 DFA <span class="arithmatex">\(M\)</span> 使得 <span class="arithmatex">\(A=L(M)\)</span>，则称语言 <span class="arithmatex">\(A\)</span> 是<em>正则的</em> （regular）。相应地，若 <span class="arithmatex">\(A_f\)</span> 正则，则称布尔函数 <span class="arithmatex">\(f\)</span> 是正则的。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>命题 4.1.</strong> <span id="prop:nonregular-language-exists"></span> 存在非正则语言。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 每个 DFA 都能编码为有限二进制串，所以全部 DFA 至多可数。 另一方面，全部语言不可数：若能把它们枚举为 <span class="arithmatex">\(A_0,A_1,A_2,\ldots\)</span>，并把 <span class="arithmatex">\(\{0,1\}^{*}\)</span> 枚举为 <span class="arithmatex">\(w_0,w_1,w_2,\ldots\)</span>，则语言</p>
 <div class="arithmatex">\[D=\{w_i:w_i\notin A_i\}\]</div>
 <p>与每个 <span class="arithmatex">\(A_i\)</span> 都不同，矛盾。因此必有语言不能被任何 DFA 判定。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="42">4.2　正则语言的封闭性<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 4.1（对并集封闭）.</strong> <span id="thm:regular-closed-under-union"></span> 若 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 都是正则语言，则 <span class="arithmatex">\(A\cup B\)</span> 也是正则语言。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 设</p>
 <div class="arithmatex">\[M_A=(K_A,s_A,F_A,\delta_A),
     \qquad
@@ -3936,24 +4081,39 @@ b_f(x,i,c)=
     \iff M_A\text{ 接受 }x\text{ 或 }M_B\text{ 接受 }x
     \iff x\in A\cup B.\]</div>
 <p><span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>对语言 <span class="arithmatex">\(A,B\subseteq\{0,1\}^{*}\)</span>，定义它们的<em>拼接</em>（concatenation）为</p>
 <div class="arithmatex">\[AB=\{xy:x\in A,\ y\in B\}.\]</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 4.2（对拼接封闭）.</strong> <span id="thm:regular-closed-under-concatenation"></span> 若 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 都是正则语言，则 <span class="arithmatex">\(AB\)</span> 也是正则语言。</p>
+</div>
 <p>直接用 DFA 构造拼接并不方便。完整证明将在后文给出；这里先引入 NFA。</p>
 <h3 id="43">4.3　非确定有限自动机<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
 <p>与 DFA 相比，NFA 可以从同一状态沿同一输入转移到多个状态，也可以进行不消耗输入符号的 <span class="arithmatex">\(\varepsilon\)</span>-转移。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 4.4（非确定有限自动机）.</strong> <span id="def:nfa"></span> 一个<em>非确定有限自动机</em>（nondeterministic finite automaton, NFA）是四元组</p>
 <div class="arithmatex">\[N=(K,s,F,\Delta),\]</div>
 <p>其中 <span class="arithmatex">\(K,s,F\)</span> 与 DFA 中的含义相同，而转移关系满足</p>
 <div class="arithmatex">\[\Delta\subseteq K\times(\{0,1\}\cup\{\varepsilon\})\times K.\]</div>
 <p>NFA 接受字符串 <span class="arithmatex">\(x\)</span>，是指存在一条从 <span class="arithmatex">\(s\)</span> 到某个接受状态的路径，使得路径标签依次串联并删除所有 <span class="arithmatex">\(\varepsilon\)</span> 后恰好得到 <span class="arithmatex">\(x\)</span>。</p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 4.2.</strong> <span id="ex:nfa-penultimate-one"></span> 语言</p>
 <div class="arithmatex">\[A=\{w\in\{0,1\}^{*}:\lvert w\rvert\geq2
       \text{ 且 }w\text{ 的倒数第二位为 }1\}\]</div>
 <p>可以由下面的 NFA 判定。在状态 <span class="arithmatex">\(q_0\)</span> 读到 <span class="arithmatex">\(1\)</span> 时，自动机既可以留在 <span class="arithmatex">\(q_0\)</span>，也可以猜测这个 <span class="arithmatex">\(1\)</span> 是倒数第二位并转移到 <span class="arithmatex">\(q_1\)</span>；若随后恰好再读一个比特，便会到达接受状态。</p>
 <p><img alt="倒数第二位为 1 的非确定有限自动机" src="../assets/tcs_penultimate_one_nfa.svg" /></p>
+</div>
 <h4 id="431-nfa-dfa">4.3.1　NFA 与 DFA 的等价性<a class="headerlink" href="#431-nfa-dfa" title="Permanent link">&para;</a></h4>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 4.3（NFA 与 DFA 等价）.</strong> <span id="thm:nfa-dfa-equivalence"></span> 对每个 NFA，都存在一个接受相同语言的 DFA；反之亦然。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> DFA 是每一步都只有唯一后继状态、且没有 <span class="arithmatex">\(\varepsilon\)</span>-转移的特殊 NFA，故一个 DFA 可以直接看作 NFA。</p>
 <p>反过来，设 NFA 为 <span class="arithmatex">\(N=(K,s,F,\Delta)\)</span>。对 <span class="arithmatex">\(S\subseteq K\)</span>，记 <span class="arithmatex">\(E(S)\)</span> 为从 <span class="arithmatex">\(S\)</span> 中某个状态出发，只经过有限次 <span class="arithmatex">\(\varepsilon\)</span>-转移所能到达的全部状态。构造 DFA</p>
 <div class="arithmatex">\[D=(\mathcal{P}(K),E(\{s\}),F_D,\delta_D),\]</div>
@@ -3966,9 +4126,18 @@ b_f(x,i,c)=
         (q,a,q')\in\Delta\}\bigr).
   \end{aligned}\]</div>
 <p>这个构造称为状态子集构造（subset construction）。对输入长度归纳可知， <span class="arithmatex">\(D\)</span> 读完任意字符串 <span class="arithmatex">\(x\)</span> 后所处的状态，恰好是 <span class="arithmatex">\(N\)</span> 读完 <span class="arithmatex">\(x\)</span> 后所有可能状态的集合。因此该集合与 <span class="arithmatex">\(F\)</span> 相交，当且仅当 <span class="arithmatex">\(N\)</span> 有一条接受 <span class="arithmatex">\(x\)</span> 的计算路径。 又因为 <span class="arithmatex">\(K\)</span> 有限，<span class="arithmatex">\(\mathcal{P}(K)\)</span> 也有限，所以 <span class="arithmatex">\(D\)</span> 确实是 DFA。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 4.1.</strong> <span id="cor:regular-iff-nfa"></span> 一个语言是正则语言，当且仅当它能被某个 NFA 判定。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 由<a href="#def:regular-language">定义 4.3</a>和<a href="#thm:nfa-dfa-equivalence">定理 4.3</a>立即得到。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h4 id="432-kleene">4.3.2　拼接与 Kleene 星<a class="headerlink" href="#432-kleene" title="Permanent link">&para;</a></h4>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong><a href="#thm:regular-closed-under-concatenation">定理 4.2</a>的证明.</strong> 取分别判定 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 的 NFA</p>
 <div class="arithmatex">\[N_A=(K_A,s_A,F_A,\Delta_A),
     \qquad
@@ -3979,10 +4148,16 @@ b_f(x,i,c)=
 <div class="arithmatex">\[\Delta=\Delta_A\cup\Delta_B
       \cup\{(q,\varepsilon,s_B):q\in F_A\}.\]</div>
 <p>也就是说，从 <span class="arithmatex">\(N_A\)</span> 的每个接受状态增加一条到 <span class="arithmatex">\(N_B\)</span> 初始状态的 <span class="arithmatex">\(\varepsilon\)</span>-转移。于是 <span class="arithmatex">\(N\)</span> 接受 <span class="arithmatex">\(w\)</span>，当且仅当可以把 <span class="arithmatex">\(w\)</span> 写成 <span class="arithmatex">\(w=xy\)</span>，使得 <span class="arithmatex">\(N_A\)</span> 接受 <span class="arithmatex">\(x\)</span> 且 <span class="arithmatex">\(N_B\)</span> 接受 <span class="arithmatex">\(y\)</span>。因此 <span class="arithmatex">\(L(N)=AB\)</span>，再由 <a href="#cor:regular-iff-nfa">推论 4.1</a>可知 <span class="arithmatex">\(AB\)</span> 正则。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>对语言 <span class="arithmatex">\(A\)</span>，递归定义 <span class="arithmatex">\(A^0=\{\varepsilon\}\)</span>、<span class="arithmatex">\(A^{n+1}=A^nA\)</span>，并称</p>
 <div class="arithmatex">\[A^*=\bigcup_{n\geq0}A^n\]</div>
 <p>为 <span class="arithmatex">\(A\)</span> 的 Kleene 星（Kleene star）。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 4.4（对 Kleene 星封闭）.</strong> <span id="thm:regular-closed-under-star"></span> 若 <span class="arithmatex">\(A\)</span> 是正则语言，则 <span class="arithmatex">\(A^*\)</span> 也是正则语言。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 取判定 <span class="arithmatex">\(A\)</span> 的 NFA <span class="arithmatex">\(N_A=(K,s,F,\Delta)\)</span>，并增加一个新状态 <span class="arithmatex">\(s'\)</span>。令</p>
 <div class="arithmatex">\[\begin{aligned}
     K'&amp;=K\cup\{s'\},\\
@@ -3991,7 +4166,10 @@ b_f(x,i,c)=
       \cup\{(q,\varepsilon,s):q\in F\}.
   \end{aligned}\]</div>
 <p>则 <span class="arithmatex">\(N'=(K',s',F',\Delta')\)</span> 可以先从 <span class="arithmatex">\(s'\)</span> 进入 <span class="arithmatex">\(N_A\)</span>，并在每次到达 <span class="arithmatex">\(N_A\)</span> 的接受状态后重新开始下一轮。新初态 <span class="arithmatex">\(s'\)</span> 本身是接受状态，所以 <span class="arithmatex">\(N'\)</span> 也接受空串。因此 <span class="arithmatex">\(L(N')=A^*\)</span>，由<a href="#cor:regular-iff-nfa">推论 4.1</a>可知 <span class="arithmatex">\(A^*\)</span> 正则。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="44">4.4　正则表达式<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 4.5（正则表达式）.</strong> <span id="def:regular-expression"></span> 二进制字母表上的正则表达式（regular expression）按下面的规则递归定义：</p>
 <ol>
 <li>
@@ -4009,15 +4187,27 @@ b_f(x,i,c)=
 </li>
 </ol>
 <p>在省略括号时，Kleene 星的优先级最高，拼接次之，并集最低。 另外用 <span class="arithmatex">\(\varepsilon\)</span> 作为 <span class="arithmatex">\(\varnothing^*\)</span> 的简写。</p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 4.3.</strong> <span id="ex:regex-at-least-two-zeroes"></span> 至少含两个 <span class="arithmatex">\(0\)</span> 的二进制串构成的语言可以写成</p>
 <div class="arithmatex">\[(0\cup1)^*0(0\cup1)^*0(0\cup1)^*.\]</div>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 4.5（正则表达式刻画正则语言）.</strong> <span id="thm:regular-expression-characterization"></span> 一个语言是正则语言，当且仅当它能由正则表达式描述。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 先设语言由正则表达式 <span class="arithmatex">\(R\)</span> 描述。对 <span class="arithmatex">\(R\)</span> 的递归结构归纳：三个基本表达式描述的语言都是正则的；归纳步骤则分别由正则语言对并集、拼接和 Kleene 星的封闭性得到。因此 <span class="arithmatex">\(L(R)\)</span> 正则。</p>
 <p>反过来，设正则语言 <span class="arithmatex">\(A\)</span> 由某个 NFA <span class="arithmatex">\(N\)</span> 判定。先给 <span class="arithmatex">\(N\)</span> 增加一个没有入边的新初态和一个没有出边的唯一新接受态：从新初态向原初态添加 <span class="arithmatex">\(\varepsilon\)</span>-转移，再从每个原接受态向新接受态添加 <span class="arithmatex">\(\varepsilon\)</span>-转移。</p>
 <p>把任意两个状态之间的所有边合并为一条边，并用这些边标签的并集作为新标签； 没有边时，标签记为 <span class="arithmatex">\(\varnothing\)</span>。随后逐个删除初态与接受态之外的状态。 删除状态 <span class="arithmatex">\(q\)</span> 时，对每对保留的状态 <span class="arithmatex">\(p,r\)</span>，将边 <span class="arithmatex">\(p\to r\)</span> 的标签更新为</p>
 <div class="arithmatex">\[R_{pr}\ \cup\ R_{pq}(R_{qq})^*R_{qr}.\]</div>
 <p>该式分别涵盖了不经过 <span class="arithmatex">\(q\)</span> 的路径，以及进入 <span class="arithmatex">\(q\)</span>、在 <span class="arithmatex">\(q\)</span> 处循环有限次后离开的路径。归纳可知，每次删除后，边标签仍描述原自动机中相应的全部路径。 最后只剩新初态和新接受态，两者之间的边标签就是一个描述 <span class="arithmatex">\(A\)</span> 的正则表达式。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="45">4.5　正则语言的泵引理<a class="headerlink" href="#45" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 4.6（正则语言的泵引理（Pumping Theorem））.</strong> <span id="thm:pumping-lemma-regular-languages"></span> 若 <span class="arithmatex">\(L\)</span> 是正则语言，则存在整数 <span class="arithmatex">\(p\geq1\)</span>，使得每个满足 <span class="arithmatex">\(w\in L\)</span> 且 <span class="arithmatex">\(\lvert w\rvert\geq p\)</span> 的字符串都可以写成 <span class="arithmatex">\(w=xyz\)</span>，并满足：</p>
 <ol>
 <li>
@@ -4031,6 +4221,9 @@ b_f(x,i,c)=
 </li>
 </ol>
 <p>这样的 <span class="arithmatex">\(p\)</span> 称为语言 <span class="arithmatex">\(L\)</span> 的一个泵长度（pumping length）。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 设 DFA <span class="arithmatex">\(M=(K,s,F,\delta)\)</span> 判定 <span class="arithmatex">\(L\)</span>，取 <span class="arithmatex">\(p=\lvert K\rvert\)</span>。令 <span class="arithmatex">\(w=w_0w_1\cdots w_{n-1}\in L\)</span>，其中 <span class="arithmatex">\(n\geq p\)</span>；再令 <span class="arithmatex">\(q_j\)</span> 为 <span class="arithmatex">\(M\)</span> 读完 <span class="arithmatex">\(w\)</span> 的前 <span class="arithmatex">\(j\)</span> 位后所处的状态。</p>
 <p>序列 <span class="arithmatex">\(q_0,q_1,\ldots,q_p\)</span> 含有 <span class="arithmatex">\(p+1\)</span> 个状态。由抽屉原理，存在 <span class="arithmatex">\(0\leq r&lt;t\leq p\)</span> 使得 <span class="arithmatex">\(q_r=q_t\)</span>。 取</p>
 <div class="arithmatex">\[x=w_0\cdots w_{r-1},\qquad
@@ -4038,17 +4231,26 @@ b_f(x,i,c)=
     z=w_t\cdots w_{n-1}.\]</div>
 <p>这里空的下标区间表示空串。</p>
 <p>因为 <span class="arithmatex">\(r&lt;t\leq p\)</span>，所以 <span class="arithmatex">\(\lvert y\rvert=t-r&gt;0\)</span> 且 <span class="arithmatex">\(\lvert xy\rvert=t\leq p\)</span>。 又因为 <span class="arithmatex">\(q_r=q_t\)</span>，从 <span class="arithmatex">\(q_r\)</span> 读入 <span class="arithmatex">\(y\)</span> 后仍回到 <span class="arithmatex">\(q_r\)</span>。因此无论重复 <span class="arithmatex">\(y\)</span> 多少次，读入 <span class="arithmatex">\(z\)</span> 之前自动机都处于 <span class="arithmatex">\(q_r\)</span>；于是对每个 <span class="arithmatex">\(i\geq0\)</span>， <span class="arithmatex">\(M\)</span> 都接受 <span class="arithmatex">\(xy^iz\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 4.4.</strong> <span id="ex:pumping-length-simple-language"></span> 对正则语言</p>
 <div class="arithmatex">\[L=01^*0,\]</div>
 <p><span class="arithmatex">\(p=3\)</span> 是一个泵长度：若 <span class="arithmatex">\(w=01^n0\)</span> 且 <span class="arithmatex">\(n\geq1\)</span>，取 <span class="arithmatex">\(x=0\)</span>、<span class="arithmatex">\(y=1\)</span>、<span class="arithmatex">\(z=1^{n-1}0\)</span> 即可。另一方面，<span class="arithmatex">\(p=2\)</span> 不是泵长度， 因为任取满足 <span class="arithmatex">\(00=xyz\)</span>、<span class="arithmatex">\(\lvert y\rvert&gt;0\)</span> 和 <span class="arithmatex">\(\lvert xy\rvert\leq2\)</span> 的分解， 令 <span class="arithmatex">\(i=0\)</span> 都会得到长度小于 <span class="arithmatex">\(2\)</span> 的串，因而不属于 <span class="arithmatex">\(L\)</span>。</p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 4.5（<span class="arithmatex">\(\{0^n1^n:n\geq0\}\)</span> 不是正则语言）.</strong> <span id="ex:zero-n-one-n-nonregular"></span> 令</p>
 <div class="arithmatex">\[A=\{0^n1^n:n\geq0\}.\]</div>
 <p>假设 <span class="arithmatex">\(A\)</span> 正则，并令 <span class="arithmatex">\(p\)</span> 为<a href="#thm:pumping-lemma-regular-languages">定理 4.6</a> 给出的泵长度。取 <span class="arithmatex">\(w=0^p1^p\in A\)</span>。任取满足 <span class="arithmatex">\(w=xyz\)</span>、<span class="arithmatex">\(\lvert y\rvert&gt;0\)</span> 且 <span class="arithmatex">\(\lvert xy\rvert\leq p\)</span> 的分解；由于 <span class="arithmatex">\(xy\)</span> 完全位于前 <span class="arithmatex">\(p\)</span> 个 <span class="arithmatex">\(0\)</span> 中，必有 <span class="arithmatex">\(y=0^k\)</span>，其中 <span class="arithmatex">\(1\leq k\leq p\)</span>。 令 <span class="arithmatex">\(i=0\)</span>，则</p>
 <div class="arithmatex">\[xy^0z=0^{p-k}1^p\notin A,\]</div>
 <p>与泵引理矛盾。因此 <span class="arithmatex">\(A\)</span> 不是正则语言。</p>
+</div>
 <h2 id="chap:pda-and-grammar">第 5 章　PDA 与语法<a class="headerlink" href="#chap:pda-and-grammar" title="Permanent link">&para;</a></h2>
 <p>有限自动机只有有限个状态，无法记录任意长的中间信息。本章在 NFA 上增加一个栈，得到下推自动机，并说明它与上下文无关文法具有相同的表达能力。</p>
 <h3 id="51">5.1　下推自动机<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 5.1（下推自动机）.</strong> <span id="def:pda"></span> 一个<em>下推自动机</em>（pushdown automaton, PDA）是四元组</p>
 <div class="arithmatex">\[P=(K,s,F,\Delta),\]</div>
 <p>其中 <span class="arithmatex">\(K\)</span> 是有限状态集，<span class="arithmatex">\(s\in K\)</span> 是初始状态，<span class="arithmatex">\(F\subseteq K\)</span> 是接受状态集， 而 <span class="arithmatex">\(\Delta\)</span> 是有限的转移关系：</p>
@@ -4058,17 +4260,26 @@ b_f(x,i,c)=
 <p>把 <span class="arithmatex">\(\Delta\)</span> 中的元素写成</p>
 <div class="arithmatex">\[(p,a,\alpha)\longrightarrow(q,\beta).\]</div>
 <p>它表示：自动机在状态 <span class="arithmatex">\(p\)</span> 读取 <span class="arithmatex">\(a\)</span>，从栈顶弹出 <span class="arithmatex">\(\alpha\)</span>，压入 <span class="arithmatex">\(\beta\)</span>， 然后进入状态 <span class="arithmatex">\(q\)</span>。这里 <span class="arithmatex">\(a\in\{0,1\}\cup\{\varepsilon\}\)</span>，而 <span class="arithmatex">\(\alpha,\beta\in\{0,1\}^{*}\)</span>；<span class="arithmatex">\(a=\varepsilon\)</span> 表示不读取输入。约定栈顶位于栈串的左端。</p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 5.2（布局与一步转移）.</strong> <span id="def:pda-configuration"></span> PDA <span class="arithmatex">\(P\)</span> 的一个<em>布局</em>（configuration）是三元组</p>
 <div class="arithmatex">\[(p,x,\gamma)\in K\times\{0,1\}^{*}\times\{0,1\}^{*},\]</div>
 <p>分别记录当前状态、尚未读取的输入和栈内容。若 <span class="arithmatex">\((p,a,\alpha)\to(q,\beta)\)</span> 是一条转移，则</p>
 <div class="arithmatex">\[(p,ax,\alpha\gamma)\vdash_P(q,x,\beta\gamma),\]</div>
 <p>其中约定 <span class="arithmatex">\(\varepsilon x=x\)</span>。记 <span class="arithmatex">\(\vdash_P^*\)</span> 为 <span class="arithmatex">\(\vdash_P\)</span> 的自反传递闭包。</p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 5.3（接受与上下文无关语言）.</strong> <span id="def:pda-acceptance-cfl"></span> PDA <span class="arithmatex">\(P=(K,s,F,\Delta)\)</span> <em>接受</em>字符串 <span class="arithmatex">\(w\)</span>，是指存在 <span class="arithmatex">\(q\in F\)</span> 使得</p>
 <div class="arithmatex">\[(s,w,\varepsilon)\vdash_P^*(q,\varepsilon,\varepsilon).\]</div>
 <p>终止布局中的三个分量 <span class="arithmatex">\(q,\varepsilon,\varepsilon\)</span> 分别表示：自动机处于接受状态 <span class="arithmatex">\(q\in F\)</span>、输入已经全部读完、栈为空。</p>
 <p>PDA 接受的语言记为</p>
 <div class="arithmatex">\[L(P)=\{w\in\{0,1\}^{*}:P\text{ 接受 }w\}.\]</div>
 <p>如果 <span class="arithmatex">\(L=L(P)\)</span> 对某个 PDA <span class="arithmatex">\(P\)</span> 成立，则称 <span class="arithmatex">\(L\)</span> 是<em>上下文无关语言</em> （context-free language, CFL）。</p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 5.1（含有相同数量的 <span class="arithmatex">\(0\)</span> 和 <span class="arithmatex">\(1\)</span>）.</strong> <span id="ex:pda-equal-zeroes-ones"></span> 令</p>
 <div class="arithmatex">\[L_{=}=\{w\in\{0,1\}^{*}:\mathop{\#}_0(w)=\mathop{\#}_1(w)\}.\]</div>
 <p>取只有一个状态 <span class="arithmatex">\(q\)</span> 的 PDA，并令 <span class="arithmatex">\(q\)</span> 同时为初始状态和接受状态。它具有以下四条转移：</p>
@@ -4080,9 +4291,12 @@ b_f(x,i,c)=
   \end{aligned}\]</div>
 <p>读到一个比特时，自动机可以把它压栈；如果栈顶是相反的比特，也可以将二者抵消。若一条计算路径以空栈结束，每次压入的 <span class="arithmatex">\(0\)</span> 都与一个读入的 <span class="arithmatex">\(1\)</span> 配对， 反之亦然，所以输入中两种比特数量相同。</p>
 <p>反过来，每次优先抵消相反的栈顶，否则把当前比特压栈。此时栈中始终只含同一种比特，栈高等于已读前缀中两种比特数量之差的绝对值。因此输入属于 <span class="arithmatex">\(L_{=}\)</span> 时，最终栈为空。故这个 PDA 恰好接受 <span class="arithmatex">\(L_{=}\)</span>。</p>
+</div>
 <p>对字符串 <span class="arithmatex">\(w=w_0w_1\cdots w_{n-1}\)</span>，记</p>
 <div class="arithmatex">\[w^{\mathsf R}=w_{n-1}\cdots w_1w_0\]</div>
 <p>为它的反转（reverse）。</p>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 5.2（偶数长度的回文串）.</strong> <span id="ex:pda-even-palindromes"></span> 语言</p>
 <div class="arithmatex">\[L_{\mathrm{even\text{-}pal}}
       =\{ww^{\mathsf R}:w\in\{0,1\}^{*}\}\]</div>
@@ -4095,7 +4309,10 @@ b_f(x,i,c)=
     (r,1,1)&amp;\longrightarrow(r,\varepsilon).
   \end{aligned}\]</div>
 <p>自动机在状态 <span class="arithmatex">\(\ell\)</span> 把前半段压栈，并非确定地猜测中点；进入 <span class="arithmatex">\(r\)</span> 后，后半段必须逐位匹配并弹出栈顶。因此它恰好接受形如 <span class="arithmatex">\(ww^{\mathsf R}\)</span> 的字符串。</p>
+</div>
 <h3 id="52">5.2　上下文无关文法<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 5.3（非确定的产生式选择）.</strong> 令 <span class="arithmatex">\(S,A\)</span> 为辅助符号，并给出产生式</p>
 <div class="arithmatex">\[S\to 0S1,
   \qquad
@@ -4112,7 +4329,10 @@ b_f(x,i,c)=
     01,  &amp; A\to\varepsilon.
   \end{cases}\]</div>
 <p>同一个符号可以有多条产生式，所以下一步不必唯一；文法的推导可以是 <em>非确定的</em>。只要存在一条产生目标字符串的推导路径，就称该文法生成了这个字符串。</p>
+</div>
 <p>这个例子中的符号集、开始符号和产生式集合可以抽象为下面的定义。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 5.4（上下文无关文法）.</strong> <span id="def:cfg"></span> 二进制字母表上的一个<em>上下文无关文法</em> （context-free grammar, CFG）是三元组</p>
 <div class="arithmatex">\[G=(V,S,R),\]</div>
 <p>其中：</p>
@@ -4128,10 +4348,16 @@ b_f(x,i,c)=
 </li>
 </ol>
 <p>产生式 <span class="arithmatex">\((A,u)\in R\)</span> 通常写作 <span class="arithmatex">\(A\to u\)</span>。<span class="arithmatex">\(V\setminus\{0,1\}\)</span> 中的符号称为非终结符（nonterminal）。</p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 5.5（推导与生成语言）.</strong> <span id="def:cfg-derivation"></span> 设 <span class="arithmatex">\(x,y,u\in V^*\)</span>，<span class="arithmatex">\(A\in V\setminus\{0,1\}\)</span>。如果 <span class="arithmatex">\(A\to u\)</span> 是 <span class="arithmatex">\(G\)</span> 的产生式，则记</p>
 <div class="arithmatex">\[xAy\Rightarrow_G xuy.\]</div>
 <p>记 <span class="arithmatex">\(\Rightarrow_G^*\)</span> 为 <span class="arithmatex">\(\Rightarrow_G\)</span> 的自反传递闭包。若 <span class="arithmatex">\(x\Rightarrow_G^*y\)</span>，则称 <span class="arithmatex">\(x\)</span> <em>推导出</em>（derive）<span class="arithmatex">\(y\)</span>。特别地，若 <span class="arithmatex">\(S\Rightarrow_G^*w\)</span>，则称 <span class="arithmatex">\(G\)</span> <em>生成</em> <span class="arithmatex">\(w\)</span>；<span class="arithmatex">\(G\)</span> 生成的语言为</p>
 <div class="arithmatex">\[L(G)=\{w\in\{0,1\}^{*}:S\Rightarrow_G^*w\}.\]</div>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 5.4（回文串文法）.</strong> <span id="ex:cfg-palindromes"></span> 取 <span class="arithmatex">\(V=\{0,1,S\}\)</span>，产生式为</p>
 <div class="arithmatex">\[S\to\varepsilon
     \mid 0
@@ -4140,8 +4366,11 @@ b_f(x,i,c)=
     \mid 1S1.\]</div>
 <p>每次递归产生式都在两端添加相同的比特，而三个基本产生式生成长度为 <span class="arithmatex">\(0\)</span> 或 <span class="arithmatex">\(1\)</span> 的回文串。因此</p>
 <div class="arithmatex">\[L(G)=\{w\in\{0,1\}^{*}:w=w^{\mathsf R}\}.\]</div>
+</div>
 <h3 id="53-pda-cfg">5.3　PDA 与 CFG 的等价性<a class="headerlink" href="#53-pda-cfg" title="Permanent link">&para;</a></h3>
 <p>为了给出等价性的构造，先把 PDA 的转移化为统一的形式。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 5.6（简单 PDA）.</strong> <span id="def:simple-pda"></span> 如果一个 PDA 只有一个接受状态，并且每条转移</p>
 <div class="arithmatex">\[(p,a,\alpha)\longrightarrow(q,\beta)\]</div>
 <p>都恰好执行以下一种操作，则称它是<em>简单 PDA</em>（simple PDA）：</p>
@@ -4153,9 +4382,18 @@ b_f(x,i,c)=
 <p><span class="arithmatex">\(\lvert \alpha\rvert=1\)</span> 且 <span class="arithmatex">\(\beta=\varepsilon\)</span>，即弹出一个比特。</p>
 </li>
 </ol>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>引理 5.1（PDA 的简化）.</strong> <span id="lem:pda-to-simple-pda"></span> 每个 PDA 都存在一个接受相同语言的简单 PDA。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 对每条广义转移引入只供它使用的中间状态。先逐位弹出 <span class="arithmatex">\(\alpha\)</span>，再按逆序逐位压入 <span class="arithmatex">\(\beta\)</span>；输入符号只在这一串新转移的第一步读取。若 <span class="arithmatex">\(\alpha=\beta=\varepsilon\)</span>，则用"压入一个 <span class="arithmatex">\(0\)</span>，再立即弹出"代替原转移。 这样每一步都只压入或弹出一个比特。</p>
 <p>最后增加唯一的新接受状态。把原接受状态改为普通状态，并从每个原接受状态经由"压入一个 <span class="arithmatex">\(0\)</span>，再弹出"连接到新接受状态。由于接受时输入和栈都必须为空，这些修改既不会增加也不会删去任何被接受的字符串。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 5.1（PDA 与 CFG 等价）.</strong> <span id="thm:pda-cfg-equivalence"></span> 对语言 <span class="arithmatex">\(L\subseteq\{0,1\}^{*}\)</span>，以下两件事等价：</p>
 <ol>
 <li>
@@ -4165,6 +4403,9 @@ b_f(x,i,c)=
 <p>存在 CFG <span class="arithmatex">\(G\)</span> 使得 <span class="arithmatex">\(L=L(G)\)</span>。</p>
 </li>
 </ol>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 先设 <span class="arithmatex">\(G=(V,S,R)\)</span> 是生成 <span class="arithmatex">\(L\)</span> 的 CFG。因为 <span class="arithmatex">\(V\)</span> 有限，可以取某个定长单射编码 <span class="arithmatex">\(c:V\to\{0,1\}^m\)</span>，并把 <span class="arithmatex">\(c\)</span> 按串联扩展到 <span class="arithmatex">\(V^*\)</span>，其中 <span class="arithmatex">\(c(\varepsilon)=\varepsilon\)</span>。构造 PDA <span class="arithmatex">\(P_G\)</span>，其状态集为 <span class="arithmatex">\(\{s_0,q\}\)</span>，初态为 <span class="arithmatex">\(s_0\)</span>，唯一接受状态为 <span class="arithmatex">\(q\)</span>。加入转移</p>
 <div class="arithmatex">\[\begin{aligned}
     (s_0,\varepsilon,\varepsilon)&amp;\longrightarrow(q,c(S)),\\
@@ -4191,11 +4432,14 @@ b_f(x,i,c)=
     \iff
     (p,w,\varepsilon)\vdash_P^*(q,\varepsilon,\varepsilon).\]</div>
 <p>第一类产生式对应空计算，第二类对应在栈为空处把计算分成两段，第三类对应一次压栈及其匹配的弹栈。取 <span class="arithmatex">\(p=s,q=f\)</span>，便有 <span class="arithmatex">\(L(G)=L(P)\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h2 id="chap:turing-machines">第 6 章　图灵机<a class="headerlink" href="#chap:turing-machines" title="Permanent link">&para;</a></h2>
 <p>PDA 仍有其无法识别的语言，例如</p>
 <div class="arithmatex">\[\{0^n1^n0^n:n\in\mathbb{N}\}.\]</div>
 <p>为了描述更一般的计算，本章引入图灵机。它具有一条无限纸带，可以在有限控制下读写纸带并向左右移动。</p>
 <h3 id="61">6.1　图灵机模型<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 6.1（图灵机）.</strong> <span id="def:turing-machine"></span> 一台<em>图灵机</em>（Turing machine, TM）是四元组</p>
 <div class="arithmatex">\[M=(K,\Gamma,s,\delta),\]</div>
 <p>其中 <span class="arithmatex">\(K\)</span> 是有限状态集，<span class="arithmatex">\(s\in K\)</span> 是初始状态，<span class="arithmatex">\(\Gamma\)</span> 是有限的纸带字母表 （tape alphabet），且</p>
@@ -4204,6 +4448,7 @@ b_f(x,i,c)=
 <div class="arithmatex">\[\delta:K\times\Gamma
       \longrightarrow K\times\Gamma\times\{L,R,S,H\},\]</div>
 <p>其中 <span class="arithmatex">\(L,R,S,H\)</span> 分别表示左移、右移、原地不动和停机（halt）。为保持左端标记不变，约定读到 <span class="arithmatex">\(\triangleright\)</span> 时不能左移或改写它，且其他位置不能写入 <span class="arithmatex">\(\triangleright\)</span>。</p>
+</div>
 <p>设输入为 <span class="arithmatex">\(x=x_0x_1\cdots x_{n-1}\in\{0,1\}^{*}\)</span>。纸带是函数 <span class="arithmatex">\(T:\mathbb{N}\to\Gamma\)</span>，其初始内容为</p>
 <div class="arithmatex">\[T(0)=\triangleright,
   \qquad
@@ -4221,9 +4466,14 @@ b_f(x,i,c)=
   \end{cases}\]</div>
 <p>移动读写头；若 <span class="arithmatex">\(D=H\)</span>，则写入后立即停机。</p>
 <p>机器停机时，从左端标记右侧开始读取，到第一个空白符为止。若读到的符号全是比特，就把这个比特串记为 <span class="arithmatex">\(M(x)\)</span>；若机器不停机，或停机时输出区域含有其他工作符号，则记 <span class="arithmatex">\(M(x)=\bot\)</span>。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 6.2（可计算函数）.</strong> <span id="def:computable-function"></span> 若对每个 <span class="arithmatex">\(x\in\{0,1\}^{*}\)</span> 都有 <span class="arithmatex">\(M(x)=f(x)\)</span>，则称图灵机 <span class="arithmatex">\(M\)</span> <em>计算</em>函数 <span class="arithmatex">\(f:\{0,1\}^{*}\to\{0,1\}^{*}\)</span>，并称 <span class="arithmatex">\(f\)</span> 是<em>可计算函数</em> （computable function）。特别地，计算一个函数的图灵机必须在每个输入上停机并产生合法输出。</p>
+</div>
 <h3 id="62-nand-tm">6.2　NAND-TM 编程语言<a class="headerlink" href="#62-nand-tm" title="Permanent link">&para;</a></h3>
 <p>图灵机适合刻画计算能力，却不适合直接编写较长的程序。下面引入与它等价、但更接近编程语言的 NAND-TM 模型。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 6.3（NAND-TM 程序）.</strong> <span id="def:nand-tm"></span> 一个 <em>NAND-TM 程序</em>包含有限个布尔标量变量、有限个以非负整数 <span class="arithmatex">\(i\in\mathbb{N}\)</span> 为下标的布尔数组，以及一个有限的指令块。与图灵机相同，程序不允许从 <span class="arithmatex">\(i=0\)</span> 继续左移。</p>
 <p>指令块中的普通指令形如</p>
 <div class="arithmatex">\[u\gets\operatorname{NAND}(v,w),\]</div>
@@ -4240,12 +4490,18 @@ b_f(x,i,c)=
       (0,0)&amp;\text{停机}
     \end{array}\]</div>
 <p>输入和输出分别存放在指定数组 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 中；为区分字符串末尾，采用一个固定的自定界编码（self-delimiting encoding）。除输入数组中由编码指定的位置外，所有变量和数组元素的初值均为 <span class="arithmatex">\(0\)</span>。</p>
+</div>
 <p>自定界编码的具体选择不影响模型能计算哪些函数；它只负责区分例如 <span class="arithmatex">\(1\)</span> 与 <span class="arithmatex">\(10\)</span> 这类具有不同长度的输入。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 6.1（图灵机与 NAND-TM 等价）.</strong> <span id="thm:tm-nand-tm-equivalence"></span> 图灵机与 NAND-TM 能计算完全相同的函数。</p>
+</div>
 <p><strong>直观想法.</strong> 两个模型中的三部分可以逐一对应：</p>
 <div class="arithmatex">\[\text{状态}\longleftrightarrow\text{布尔标量},\qquad
   \text{纸带}\longleftrightarrow\text{布尔数组},\qquad
   \text{读写头位置}\longleftrightarrow i.\]</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 先用 NAND-TM 模拟图灵机 <span class="arithmatex">\(M=(K,\Gamma,s,\delta)\)</span>。用</p>
 <div class="arithmatex">\[k=\lceil\log_2\lvert K\rvert\rceil,
     \qquad
@@ -4262,6 +4518,7 @@ b_f(x,i,c)=
 <p>反过来，考虑一个有 <span class="arithmatex">\(k\)</span> 个标量、<span class="arithmatex">\(\ell\)</span> 个数组的 NAND-TM 程序。把每种标量取值 <span class="arithmatex">\(a\in\{0,1\}^k\)</span> 作为图灵机的一个状态，便得到 <span class="arithmatex">\(2^k\)</span> 个状态；把同一下标处的数组元素</p>
 <div class="arithmatex">\[(A_1[i],\ldots,A_\ell[i])\in\{0,1\}^\ell\]</div>
 <p>作为一个纸带字母，便得到大小为 <span class="arithmatex">\(2^\ell\)</span> 的纸带字母表。程序的固定指令块把当前的 <span class="arithmatex">\(k+\ell\)</span> 个比特唯一地映到新的 <span class="arithmatex">\(k+\ell\)</span> 个比特和两个方向比特， 所以它可直接写成图灵机的有限转移函数。于是 NAND-TM 的一轮对应图灵机的一步。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h4 id="621-nand-tm">6.2.1　NAND-TM 程序中的语法糖<a class="headerlink" href="#621-nand-tm" title="Permanent link">&para;</a></h4>
 <p>为了便于书写，可以加入不会改变计算能力的<em>语法糖</em>（syntactic sugar）。</p>
 <ul>
@@ -4285,6 +4542,8 @@ MODANDJUMP(a, b)
 <p>这些写法可能改变运行时间，但不会改变可计算函数的范围。</p>
 <h3 id="63-nand-ram">6.3　NAND-RAM<a class="headerlink" href="#63-nand-ram" title="Permanent link">&para;</a></h3>
 <p>实际计算机通常允许直接访问给定地址，而不必让读写头逐格移动。随机存取机 （random-access machine, RAM）正是对此的抽象。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 6.4（NAND-RAM 程序）.</strong> <span id="def:nand-ram"></span> <em>NAND-RAM</em> 是在 NAND-TM 基础上加入下列操作得到的编程模型：</p>
 <ol>
 <li>
@@ -4298,8 +4557,15 @@ MODANDJUMP(a, b)
 </li>
 </ol>
 <p>每条指令只操作有限长的数据，并由有限算法给出其语义。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 6.2（NAND-TM 与 NAND-RAM 等价）.</strong> <span id="thm:nand-tm-nand-ram-equivalence"></span> NAND-TM 与 NAND-RAM 能计算完全相同的函数。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 比较麻烦，略。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="64-church-turing">6.4　Church--Turing 论题<a class="headerlink" href="#64-church-turing" title="Permanent link">&para;</a></h3>
 <p><em>Church--Turing 论题</em>（Church--Turing thesis）断言：凡是能够由有效、 机械的步骤完成的计算，都可以由图灵机完成。换言之，图灵机刻画了"算法可计算" 的本质。</p>
 <p>这里使用"论题"而不是"定理"，因为"有效机械步骤"是一个先于形式模型的直观概念，无法在不先选定计算模型的前提下成为可证明的数学命题。大量彼此独立提出的计算模型都与图灵机等价，这是支持该论题的主要证据。</p>
@@ -4310,6 +4576,8 @@ MODANDJUMP(a, b)
 <div class="arithmatex">\[\delta(q,a)=(q',b,D)\]</div>
 <p>写成五元组 <span class="arithmatex">\((q,a,q',b,D)\)</span>。利用自定界编码依次记录状态数、字母表大小、初始状态和全部转移，就得到 <span class="arithmatex">\(M\)</span> 的编码 <span class="arithmatex">\(\langle M\rangle\in\{0,1\}^{*}\)</span>。这种编码具有以下性质：是否合法可以判定，并且可以从合法编码中恢复 <span class="arithmatex">\(M\)</span> 的全部数据。</p>
 <p>下文用 <span class="arithmatex">\(\langle u,v\rangle\)</span> 表示两个字符串的固定自定界编码，并把 <span class="arithmatex">\(U(\langle m,x\rangle)\)</span> 简写为 <span class="arithmatex">\(U(m,x)\)</span>。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.1（通用图灵机）.</strong> <span id="thm:universal-turing-machine"></span> 存在一台图灵机 <span class="arithmatex">\(U\)</span>，使得对任意 <span class="arithmatex">\(m,x\in\{0,1\}^{*}\)</span>，</p>
 <div class="arithmatex">\[U(m,x)=
     \begin{cases}
@@ -4317,13 +4585,23 @@ MODANDJUMP(a, b)
       0,&amp;m\text{ 不是合法编码}.
     \end{cases}\]</div>
 <p>第一种情形中，若 <span class="arithmatex">\(M\)</span> 在 <span class="arithmatex">\(x\)</span> 上不停机，则 <span class="arithmatex">\(U\)</span> 也不停机。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> <span class="arithmatex">\(U\)</span> 先检查并解析 <span class="arithmatex">\(m\)</span>。若编码不合法，就输出 <span class="arithmatex">\(0\)</span>；否则从中恢复 <span class="arithmatex">\(M=(K,\Gamma,s,\delta)\)</span>。随后 <span class="arithmatex">\(U\)</span> 在自己的纸带上记录 <span class="arithmatex">\(M\)</span> 的当前状态、读写头位置和纸带内容，并根据编码中的转移表逐步更新这三个部分。每一轮模拟 <span class="arithmatex">\(M\)</span> 的一步，所以两台机器同时停机且输出相同。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>这样的 <span class="arithmatex">\(U\)</span> 称为<em>通用图灵机</em>（universal Turing machine）。它表明我们不需要为每个算法制造一台新的物理机器：只需把程序编码后交给同一台机器执行。</p>
 <h3 id="72">7.2　不可计算函数<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.2（不可计算函数的存在性）.</strong> <span id="thm:uncomputable-function-exists"></span> 存在函数 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span> 不是可计算函数。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明一：计数.</strong> 每台图灵机都有一个有限二进制编码，所以图灵机的集合至多可数，因而它们至多能计算可数多个函数。另一方面，<span class="arithmatex">\(\{0,1\}^{*}\)</span> 是可数无限集，因此从 <span class="arithmatex">\(\{0,1\}^{*}\)</span> 到 <span class="arithmatex">\(\{0,1\}\)</span> 的函数共有</p>
 <div class="arithmatex">\[2^{\aleph_0}\]</div>
 <p>个，是不可数的。故其中必有函数不能由图灵机计算。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>下面的对角化（diagonalization）证明给出一个具体的不可计算函数。若 <span class="arithmatex">\(m\)</span> 是合法图灵机编码，记其对应的机器为 <span class="arithmatex">\(M_m\)</span>。定义</p>
 <p><span id="eq:diagonal-uncomputable-function"></span></p>
 <div class="arithmatex">\[\tag{7.1}
@@ -4333,15 +4611,26 @@ F^*(m)=
     1,&amp;\text{其他情形}.
   \end{cases}\]</div>
 <p>"其他情形"包括 <span class="arithmatex">\(m\)</span> 非法、<span class="arithmatex">\(M_m(m)\)</span> 不停机，以及它停机但输出不是 <span class="arithmatex">\(1\)</span>。</p>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明二：对角化.</strong> 假设某台图灵机 <span class="arithmatex">\(M_e\)</span> 计算 <span class="arithmatex">\(F^*\)</span>，其中 <span class="arithmatex">\(e=\langle M_e\rangle\)</span>。把 <span class="arithmatex">\(e\)</span> 输入它自身。若 <span class="arithmatex">\(M_e(e)=1\)</span>，则由 <a href="#eq:diagonal-uncomputable-function">式 7.1</a> 得 <span class="arithmatex">\(F^*(e)=0\)</span>；若 <span class="arithmatex">\(M_e(e)=0\)</span>，则同一式给出 <span class="arithmatex">\(F^*(e)=1\)</span>。两种情形都与 <span class="arithmatex">\(M_e(e)=F^*(e)\)</span> 矛盾，故 <span class="arithmatex">\(F^*\)</span> 不可计算。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="73">7.3　停机问题<a class="headerlink" href="#73" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 7.1（停机问题）.</strong> <span id="def:halting-problem"></span> <em>停机问题</em>（halting problem）是函数</p>
 <div class="arithmatex">\[\operatorname{HALT}(m,x)=
     \begin{cases}
       1,&amp;m=\langle M\rangle\text{ 且 }M\text{ 在输入 }x\text{ 上停机},\\
       0,&amp;\text{其他情形}.
     \end{cases}\]</div>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.3（停机问题不可计算）.</strong> <span id="thm:halting-problem-uncomputable"></span> 函数 <span class="arithmatex">\(\operatorname{HALT}\)</span> 不可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 假设图灵机 <span class="arithmatex">\(H\)</span> 计算 <span class="arithmatex">\(\operatorname{HALT}\)</span>。由它构造一台机器 <span class="arithmatex">\(D\)</span>：输入 <span class="arithmatex">\(m\)</span> 后，先计算 <span class="arithmatex">\(H(m,m)\)</span>。若结果为 <span class="arithmatex">\(0\)</span>，则输出 <span class="arithmatex">\(1\)</span>；若结果为 <span class="arithmatex">\(1\)</span>，则按照 <a href="#thm:universal-turing-machine">定理 7.1</a> 的方法逐步模拟 <span class="arithmatex">\(M_m(m)\)</span> 直至其停机。 若模拟得到的输出恰为 <span class="arithmatex">\(1\)</span>，就输出 <span class="arithmatex">\(0\)</span>；否则输出 <span class="arithmatex">\(1\)</span>。</p>
 <p><strong>Pseudocode: Diagonal machine <span class="arithmatex">\(D\)</span> (input <span class="arithmatex">\(m\)</span>)</strong></p>
 <ol>
@@ -4359,13 +4648,19 @@ F^*(m)=
 </li>
 </ol>
 <p>当 <span class="arithmatex">\(H(m,m)=1\)</span> 时，被模拟的机器必定停机，所以 <span class="arithmatex">\(D\)</span> 在每个输入上都停机。 对照 <a href="#eq:diagonal-uncomputable-function">式 7.1</a> 可知 <span class="arithmatex">\(D\)</span> 恰好计算 <span class="arithmatex">\(F^*\)</span>，这与 <a href="#thm:uncomputable-function-exists">定理 7.2</a> 矛盾。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>只询问机器在某个固定输入上是否停机，也不会使问题变得可计算。定义</p>
 <div class="arithmatex">\[\operatorname{HALT}_0(m)=
   \begin{cases}
     1,&amp;m=\langle M\rangle\text{ 且 }M\text{ 在输入 }0\text{ 上停机},\\
     0,&amp;\text{其他情形}.
   \end{cases}\]</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.4（固定输入上的停机问题）.</strong> <span id="thm:halt-on-zero-uncomputable"></span> 函数 <span class="arithmatex">\(\operatorname{HALT}_0\)</span> 不可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 给定 <span class="arithmatex">\(m,x\)</span>，可以有效构造图灵机 <span class="arithmatex">\(N_{m,x}\)</span>：它忽略自己的输入，若 <span class="arithmatex">\(m\)</span> 合法就模拟 <span class="arithmatex">\(M_m(x)\)</span>，否则永远循环。于是</p>
 <p><strong>Pseudocode: Machine <span class="arithmatex">\(N_{m,x}\)</span> (input <span class="arithmatex">\(y\)</span>)</strong></p>
 <ol>
@@ -4392,7 +4687,10 @@ F^*(m)=
 </li>
 </ol>
 <p>这便给出了停机问题的算法，与 <a href="#thm:halting-problem-uncomputable">定理 7.3</a> 矛盾。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>不可计算性不仅涉及机器是否停机，也涉及机器计算了什么函数。</p>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 7.1（识别常零函数）.</strong> <span id="ex:zero-function-uncomputable"></span> 令 <span class="arithmatex">\(Z(x)=0\)</span>，并定义</p>
 <div class="arithmatex">\[\operatorname{ZERO}(m)=
     \begin{cases}
@@ -4400,6 +4698,9 @@ F^*(m)=
       0,&amp;\text{其他情形}.
     \end{cases}\]</div>
 <p>函数 <span class="arithmatex">\(\operatorname{ZERO}\)</span> 不可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 假设某台机器 <span class="arithmatex">\(E\)</span> 计算 <span class="arithmatex">\(\operatorname{ZERO}\)</span>。给定 <span class="arithmatex">\(m,x\)</span>，构造机器 <span class="arithmatex">\(N_{m,x}\)</span>：在任意输入 <span class="arithmatex">\(y\)</span> 上，它先模拟 <span class="arithmatex">\(M_m(x)\)</span>；若模拟停机，就输出 <span class="arithmatex">\(0\)</span>。若 <span class="arithmatex">\(m\)</span> 非法，则令 <span class="arithmatex">\(N_{m,x}\)</span> 永远循环。</p>
 <p><strong>Pseudocode: Machine <span class="arithmatex">\(N_{m,x}\)</span> (input <span class="arithmatex">\(y\)</span>)</strong></p>
 <ol>
@@ -4430,32 +4731,56 @@ F^*(m)=
 </li>
 </ol>
 <p>这将使停机问题可计算，产生矛盾。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="74">7.4　归约<a class="headerlink" href="#74" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 7.2（归约）.</strong> <span id="def:computable-reduction"></span> 设 <span class="arithmatex">\(F,G:\{0,1\}^{*}\to\{0,1\}\)</span>。从 <span class="arithmatex">\(F\)</span> 到 <span class="arithmatex">\(G\)</span> 的一个<em>归约</em> （reduction）是一个可计算函数 <span class="arithmatex">\(R:\{0,1\}^{*}\to\{0,1\}^{*}\)</span>，满足</p>
 <div class="arithmatex">\[F(x)=G(R(x))
     \qquad(x\in\{0,1\}^{*}).\]</div>
 <p>若存在这样的 <span class="arithmatex">\(R\)</span>，记为 <span class="arithmatex">\(F\leq_{\mathrm m}G\)</span>，并称 <span class="arithmatex">\(F\)</span> 可多对一归约到 <span class="arithmatex">\(G\)</span> （many-one reducible）。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 7.1.</strong> <span id="cor:reduction-preserves-computability"></span> 若 <span class="arithmatex">\(F\leq_{\mathrm m}G\)</span> 且 <span class="arithmatex">\(G\)</span> 可计算，则 <span class="arithmatex">\(F\)</span> 可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 先计算 <span class="arithmatex">\(R(x)\)</span>，再计算 <span class="arithmatex">\(G(R(x))\)</span>，所得结果就是 <span class="arithmatex">\(F(x)\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 7.2.</strong> <span id="cor:reduction-transfers-uncomputability"></span> 若 <span class="arithmatex">\(F\leq_{\mathrm m}G\)</span> 且 <span class="arithmatex">\(F\)</span> 不可计算，则 <span class="arithmatex">\(G\)</span> 不可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 这是 <a href="#cor:reduction-preserves-computability">推论 7.1</a> 的逆否命题。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>前面两个证明已经隐含使用了归约：它们分别给出</p>
 <div class="arithmatex">\[\operatorname{HALT}\leq_{\mathrm m}\operatorname{HALT}_0,
   \qquad
   \operatorname{HALT}\leq_{\mathrm m}\operatorname{ZERO}.\]</div>
 <h3 id="75-rice">7.5　Rice 定理<a class="headerlink" href="#75-rice" title="Permanent link">&para;</a></h3>
 <p>机器的<em>语义性质</em>（semantic property）只取决于它所计算的函数，而不取决于状态名称、转移表写法等实现细节。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 7.3（图灵机的性质；语义与非平凡）.</strong> <span id="def:semantic-nontrivial-property"></span> 图灵机的一个<em>性质</em> <span class="arithmatex">\(P\)</span> 为每台图灵机 <span class="arithmatex">\(M\)</span> 指定一个布尔值 <span class="arithmatex">\(P(M)\in\{0,1\}\)</span>。其中 <span class="arithmatex">\(P(M)=1\)</span> 表示 <span class="arithmatex">\(M\)</span> 满足性质 <span class="arithmatex">\(P\)</span>，<span class="arithmatex">\(P(M)=0\)</span> 表示 <span class="arithmatex">\(M\)</span> 不满足性质 <span class="arithmatex">\(P\)</span>。</p>
 <p>性质 <span class="arithmatex">\(P\)</span> 称为<em>语义的</em>，如果任意两台计算同一个偏函数 （partial function）的机器 <span class="arithmatex">\(M,M'\)</span> 都满足</p>
 <div class="arithmatex">\[P(M)=P(M').\]</div>
 <p>若存在图灵机 <span class="arithmatex">\(M_0,M_1\)</span> 使得 <span class="arithmatex">\(P(M_0)=0\)</span> 且 <span class="arithmatex">\(P(M_1)=1\)</span>，则称 <span class="arithmatex">\(P\)</span> 是 <em>非平凡的</em>（non-trivial）。换言之，非平凡也就是 <span class="arithmatex">\(P\)</span> 不是常函数。</p>
+</div>
 <p>对这样的性质，考虑其判定函数</p>
 <div class="arithmatex">\[\chi_P(m)=
   \begin{cases}
     P(M),&amp;m=\langle M\rangle,\\
     0,&amp;m\text{ 不是合法编码}.
   \end{cases}\]</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.5（Rice 定理）.</strong> <span id="thm:rice"></span> 若 <span class="arithmatex">\(P\)</span> 是图灵机的语义且非平凡的性质，则 <span class="arithmatex">\(\chi_P\)</span> 不可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 令 <span class="arithmatex">\(M_\infty\)</span> 为在每个输入上都永远循环的机器。</p>
 <p><strong>Pseudocode: Diverging machine <span class="arithmatex">\(M_\infty\)</span> (input <span class="arithmatex">\(y\)</span>)</strong></p>
 <ol>
@@ -4479,6 +4804,7 @@ F^*(m)=
 <div class="arithmatex">\[\operatorname{HALT}(m,x)
       =\chi_P(\langle N_{m,x}\rangle),\]</div>
 <p>即 <span class="arithmatex">\(\operatorname{HALT}\leq_{\mathrm m}\chi_P\)</span>。由 <a href="#thm:halting-problem-uncomputable">定理 7.3</a> 以及 <a href="#cor:reduction-transfers-uncomputability">推论 7.2</a> 可知 <span class="arithmatex">\(\chi_P\)</span> 不可计算。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="76">7.6　自引用与递归定理<a class="headerlink" href="#76" title="Permanent link">&para;</a></h3>
 <p>程序可以把程序编码作为普通字符串处理。固定上一节的图灵机编码后，存在以下两个可计算的代码生成函数：</p>
 <ul>
@@ -4490,6 +4816,8 @@ F^*(m)=
 </li>
 </ul>
 <p>它们都是可计算的，因为只需把 <span class="arithmatex">\(w\)</span> 或两张转移表填入一个固定的程序模板。</p>
+<div class="admonition tcs-algorithm">
+<p class="admonition-title">Tcs-algorithm</p>
 <p><strong>Pseudocode: Hardwiring machine <span class="arithmatex">\(A_w\)</span> (input <span class="arithmatex">\(x\)</span>)</strong></p>
 <ol>
 <li>
@@ -4499,7 +4827,13 @@ F^*(m)=
 <p>Output <span class="arithmatex">\(\langle w,x\rangle\)</span> and halt.</p>
 </li>
 </ol>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 7.2（自打印图灵机）.</strong> <span id="ex:self-printing-tm"></span> 存在一台图灵机 <span class="arithmatex">\(R\)</span>，它在任意输入上都输出自己的编码 <span class="arithmatex">\(\langle R\rangle\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> <strong>构造思路.</strong> 若直接要求一台机器把自己的编码写在程序里，就会产生循环依赖。为此把目标机器拆成先后运行的两部分 <span class="arithmatex">\(R=A_b\to B\)</span>。其中 <span class="arithmatex">\(b=\langle B\rangle\)</span>，而 <span class="arithmatex">\(A_b\)</span> 只需硬编码 <span class="arithmatex">\(b\)</span>，不必预先知道 <span class="arithmatex">\(\langle R\rangle\)</span>。运行时，<span class="arithmatex">\(A_b\)</span> 先把 <span class="arithmatex">\(b\)</span> 连同原输入 <span class="arithmatex">\(x\)</span> 写成 <span class="arithmatex">\(\langle b,x\rangle\)</span>；<span class="arithmatex">\(B\)</span> 再由 <span class="arithmatex">\(b\)</span> 计算 <span class="arithmatex">\(q(b)=\langle A_b\rangle\)</span>，并把两部分的编码组合起来：</p>
 <div class="arithmatex">\[\underbrace{q(b)}_{\langle A_b\rangle},
     \quad
@@ -4535,10 +4869,16 @@ F^*(m)=
 </ol>
 <div class="arithmatex">\[R(x)=c(q(b),b)=r=\langle R\rangle.\]</div>
 <p>最后一个等号并非额外假设：<span class="arithmatex">\(R\)</span> 按构造正是编码为 <span class="arithmatex">\(q(b)\)</span> 的 <span class="arithmatex">\(A_b\)</span> 与编码为 <span class="arithmatex">\(b\)</span> 的 <span class="arithmatex">\(B\)</span> 的串联，所以代码生成函数 <span class="arithmatex">\(c\)</span> 保证 <span class="arithmatex">\(r=c(q(b),b)\)</span> 恰好就是 <span class="arithmatex">\(\langle R\rangle\)</span>。因此 <span class="arithmatex">\(R\)</span> 输出的确实是自己的编码。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>同一个技巧允许程序在运行时取得自己的编码。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.6（递归定理（Recursion Theorem））.</strong> <span id="thm:recursion-theorem"></span> 设图灵机 <span class="arithmatex">\(T\)</span> 接受两个输入。存在图灵机 <span class="arithmatex">\(R\)</span>，使得对每个 <span class="arithmatex">\(x\in\{0,1\}^{*}\)</span>，</p>
 <div class="arithmatex">\[R(x)=T(\langle R\rangle,x).\]</div>
 <p>等式按偏函数理解：一侧不停机当且仅当另一侧不停机。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> <strong>构造思路.</strong> 递归定理可以看成把自打印机器产生的自身编码直接交给 <span class="arithmatex">\(T\)</span>。按照笔记中的分解，令</p>
 <div class="arithmatex">\[R=A\to B\to T.\]</div>
 <p><span class="arithmatex">\(A\)</span> 只需硬编码 <span class="arithmatex">\(\langle B\rangle\)</span> 与 <span class="arithmatex">\(\langle T\rangle\)</span>，并保留原输入 <span class="arithmatex">\(x\)</span>；<span class="arithmatex">\(B\)</span> 再由这些编码生成 <span class="arithmatex">\(\langle A\rangle\)</span>，并重新排列纸带，使其内容变为</p>
@@ -4571,6 +4911,9 @@ F^*(m)=
 </ol>
 <div class="arithmatex">\[R(x)=B_T(b,x)=T(\langle R\rangle,x).\]</div>
 <p><span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 7.3（用递归定理重证停机问题）.</strong> <span id="ex:halting-via-recursion-theorem"></span> 假设存在计算 <span class="arithmatex">\(\operatorname{HALT}\)</span> 的机器 <span class="arithmatex">\(H\)</span>。构造机器 <span class="arithmatex">\(T\)</span>，使得</p>
 <div class="arithmatex">\[T(m,x)=
     \begin{cases}
@@ -4591,6 +4934,7 @@ F^*(m)=
 </li>
 </ol>
 <p>由 <a href="#thm:recursion-theorem">定理 7.6</a>，存在 <span class="arithmatex">\(R\)</span> 满足 <span class="arithmatex">\(R(x)=T(\langle R\rangle,x)\)</span>。若 <span class="arithmatex">\(H(\langle R\rangle,x)=1\)</span>，则 <span class="arithmatex">\(R(x)\)</span> 不停机；若其值为 <span class="arithmatex">\(0\)</span>，则 <span class="arithmatex">\(R(x)\)</span> 停机。两种情形都与 <span class="arithmatex">\(H\)</span> 的输出矛盾，故 <span class="arithmatex">\(\operatorname{HALT}\)</span> 不可计算。</p>
+</div>
 <p>有了递归定理，就可以通过这种"作弊"的方式来证明。</p>
 <h4 id="761">7.6.1　最小机器与不动点<a class="headerlink" href="#761" title="Permanent link">&para;</a></h4>
 <p>记 <span class="arithmatex">\(M\simeq N\)</span> 表示两台机器计算同一个偏函数。称机器 <span class="arithmatex">\(M\)</span> 是<em>最小的</em> （minimal），如果</p>
@@ -4603,7 +4947,12 @@ F^*(m)=
     1,&amp;m=\langle M\rangle\text{ 且 }M\text{ 是最小机器},\\
     0,&amp;\text{其他情形}.
   \end{cases}\]</div>
+<div class="admonition tcs-example">
+<p class="admonition-title">Tcs-example</p>
 <p><strong>例 7.4（识别最小机器）.</strong> <span id="ex:minimal-tm-uncomputable"></span> 函数 <span class="arithmatex">\(\operatorname{MIN}\)</span> 不可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 假设 <span class="arithmatex">\(\operatorname{MIN}\)</span> 可计算。最小机器的编码长度没有上界：函数 <span class="arithmatex">\(x\mapsto 0^n\)</span> 随 <span class="arithmatex">\(n\)</span> 改变而彼此不同，而长度不超过任意给定常数的编码只有有限多个。</p>
 <p>构造机器 <span class="arithmatex">\(T\)</span>。在输入 <span class="arithmatex">\(\langle m,x\rangle\)</span> 上，它按长度枚举字符串 <span class="arithmatex">\(s\)</span>，直至找到</p>
 <div class="arithmatex">\[\operatorname{MIN}(s)=1
@@ -4626,9 +4975,15 @@ F^*(m)=
     \qquad
     \lvert \langle R\rangle\rvert&lt;\lvert s\rvert.\]</div>
 <p>这与 <span class="arithmatex">\(M_s\)</span> 是最小机器矛盾。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>递归定理也常写成下面的不动点（fixed point）形式。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 7.3（不动点定理）.</strong> <span id="cor:fixed-point-theorem"></span> 设 <span class="arithmatex">\(f:\{0,1\}^{*}\to\{0,1\}^{*}\)</span> 是可计算函数，并且把合法图灵机编码映射为合法图灵机编码。则存在图灵机 <span class="arithmatex">\(F\)</span>，使得</p>
 <div class="arithmatex">\[F\simeq M_{f(\langle F\rangle)}.\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 令 <span class="arithmatex">\(T(m,x)\)</span> 模拟编码为 <span class="arithmatex">\(f(m)\)</span> 的机器在 <span class="arithmatex">\(x\)</span> 上的计算。对 <span class="arithmatex">\(T\)</span> 应用 <a href="#thm:recursion-theorem">定理 7.6</a> 即得所需的 <span class="arithmatex">\(F\)</span>。</p>
 <p><strong>Pseudocode: Fixed-point machine <span class="arithmatex">\(F\)</span> (input <span class="arithmatex">\(x\)</span>)</strong></p>
 <ol>
@@ -4643,7 +4998,10 @@ F^*(m)=
 </li>
 </ol>
 <p><span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="77">7.7　有效证明系统与不完备性<a class="headerlink" href="#77" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 7.4（有效证明系统）.</strong> <span id="def:effective-proof-system"></span> 设 <span class="arithmatex">\(\mathcal T\subseteq\{0,1\}^{*}\)</span> 是一组真命题的编码。它的一个<em>有效证明系统</em>（effective proof system）是图灵机</p>
 <div class="arithmatex">\[V:\{0,1\}^{*}\times\{0,1\}^{*}\to\{0,1\},\]</div>
 <p>其中 <span class="arithmatex">\(V(x,p)=1\)</span> 表示 <span class="arithmatex">\(p\)</span> 是命题 <span class="arithmatex">\(x\)</span> 的证明，并满足：</p>
@@ -4656,7 +5014,13 @@ F^*(m)=
 </li>
 </ol>
 <p>如果对每个 <span class="arithmatex">\(x\in\mathcal T\)</span> 都存在 <span class="arithmatex">\(p\)</span> 使 <span class="arithmatex">\(V(x,p)=1\)</span>，则称 <span class="arithmatex">\(V\)</span> 是 <em>完备的</em>（complete）。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.7（抽象不完备性）.</strong> <span id="thm:abstract-incompleteness"></span> 存在一组真命题 <span class="arithmatex">\(\mathcal T\)</span>，它没有可靠且完备的有效证明系统。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 对每台图灵机 <span class="arithmatex">\(M\)</span>，考虑两个命题</p>
 <div class="arithmatex">\[h_M=\text{“$M$ 在输入 $0$ 上停机”},
     \qquad
@@ -4683,8 +5047,11 @@ F^*(m)=
 </li>
 </ol>
 <p>若 <span class="arithmatex">\(M(0)\)</span> 停机，第一项计算会结束；若它不停机，则 <span class="arithmatex">\(n_M\in\mathcal T\)</span>，完备性保证第二项最终找到证明。可靠性保证两项不会给出冲突的答案。因此这个过程计算 <span class="arithmatex">\(\operatorname{HALT}_0\)</span>，与 <a href="#thm:halt-on-zero-uncomputable">定理 7.4</a> 矛盾。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>这个结论给出了哥德尔不完备现象的计算核心。为了把它落实到算术语句，下面固定一种具体的形式语言。</p>
 <h4 id="771">7.7.1　量化整数语句<a class="headerlink" href="#771" title="Permanent link">&para;</a></h4>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 7.5（量化整数语句）.</strong> <span id="def:quantified-integer-statement"></span> <em>量化整数语句</em>（quantified integer statement, QIS）是由下列成分组成的闭公式：</p>
 <ul>
 <li>
@@ -4698,17 +5065,26 @@ F^*(m)=
 </li>
 </ul>
 <p>本节约定量词的论域为 <span class="arithmatex">\(\mathbb{N}\)</span>。闭公式没有自由变量，因而在标准自然数结构中具有确定的真值。</p>
+</div>
 <p>对非法编码约定结果为 <span class="arithmatex">\(0\)</span>，并定义</p>
 <div class="arithmatex">\[\operatorname{EVAL}(\varphi)=
   \begin{cases}
     1,&amp;\varphi\text{ 是真的 QIS},\\
     0,&amp;\varphi\text{ 是假的 QIS 或不是合法 QIS}.
   \end{cases}\]</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>引理 7.1（计算历史的算术化）.</strong> <span id="lem:arithmetization-of-computation"></span> 存在一个可计算变换，把任意图灵机编码 <span class="arithmatex">\(\langle M\rangle\)</span> 映射为 QIS <span class="arithmatex">\(\varphi_M\)</span>，使得</p>
 <div class="arithmatex">\[\varphi_M\text{ 为真}
     \quad\Longleftrightarrow\quad
     M\text{ 在输入 }0\text{ 上停机}.\]</div>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.8（QIS 真值不可判定）.</strong> <span id="thm:qis-evaluation-uncomputable"></span> 函数 <span class="arithmatex">\(\operatorname{EVAL}\)</span> 不可计算。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 若 <span class="arithmatex">\(\operatorname{EVAL}\)</span> 可计算，则由 <a href="#lem:arithmetization-of-computation">引理 7.1</a> 可得</p>
 <p><strong>Pseudocode: Halting decider <span class="arithmatex">\(D_0\)</span> using <span class="arithmatex">\(\operatorname{EVAL}\)</span> (input <span class="arithmatex">\(m\)</span>)</strong></p>
 <ol>
@@ -4725,7 +5101,13 @@ F^*(m)=
 <div class="arithmatex">\[\operatorname{HALT}_0(\langle M\rangle)
       =\operatorname{EVAL}(\varphi_M),\]</div>
 <p>这与 <a href="#thm:halt-on-zero-uncomputable">定理 7.4</a> 矛盾。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 7.9（量化整数真理的不完备性）.</strong> <span id="thm:qis-incompleteness"></span> 所有真 QIS 构成的集合没有可靠且完备的有效证明系统。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 假设存在这样的验证器 <span class="arithmatex">\(V\)</span>。给定合法 QIS <span class="arithmatex">\(\varphi\)</span>，同时枚举 <span class="arithmatex">\(\varphi\)</span> 与 <span class="arithmatex">\(\lnot\varphi\)</span> 的所有候选证明，并用 <span class="arithmatex">\(V\)</span> 验证。二者恰有一个为真； 完备性保证其证明最终被找到，可靠性保证假命题不会被证明。因此我们可以判定 <span class="arithmatex">\(\varphi\)</span> 的真值，这与 <a href="#thm:qis-evaluation-uncomputable">定理 7.8</a> 矛盾。</p>
 <p><strong>Pseudocode: QIS decider <span class="arithmatex">\(D_{\mathrm{QIS}}\)</span> from a complete proof system (input <span class="arithmatex">\(\varphi\)</span>)</strong></p>
 <ol>
@@ -4740,34 +5122,50 @@ F^*(m)=
 </li>
 </ol>
 <p><span class="arithmatex">\(\square\)</span></p>
+</div>
 <h2 id="chap:running-time">第 8 章　运行时间<a class="headerlink" href="#chap:running-time" title="Permanent link">&para;</a></h2>
 <p>上一章只区分一个函数是否可计算。本章进一步研究计算需要多少时间，并比较图灵机、NAND-RAM 与布尔电路所得到的复杂度类。本章中 <span class="arithmatex">\(\log\)</span> 均以 <span class="arithmatex">\(2\)</span> 为底。</p>
 <h3 id="81">8.1　时间复杂度类<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 8.1（图灵机的运行时间）.</strong> <span id="def:tm-running-time"></span> 设 <span class="arithmatex">\(T:\mathbb{N}\to\mathbb{N}\)</span>。若存在 <span class="arithmatex">\(n_0\)</span>，使得对所有 <span class="arithmatex">\(n\geq n_0\)</span> 和 <span class="arithmatex">\(x\in\{0,1\}^n\)</span>，图灵机 <span class="arithmatex">\(M\)</span> 都在至多 <span class="arithmatex">\(T(n)\)</span> 步内停机，则称 <span class="arithmatex">\(M\)</span> 的 <em>运行时间</em>（running time）至多为 <span class="arithmatex">\(T(n)\)</span>。</p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 8.2（图灵机时间类）.</strong> <span id="def:tm-time-class"></span> 记</p>
 <div class="arithmatex">\[\operatorname{TIME}_{\mathrm{TM}}(T(n))\]</div>
 <p>为所有满足下列条件的布尔函数 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span> 的集合：存在一台运行时间至多为 <span class="arithmatex">\(T(n)\)</span> 的图灵机，在每个输入 <span class="arithmatex">\(x\)</span> 上输出 <span class="arithmatex">\(F(x)\)</span>。</p>
+</div>
 <p>例如，当 <span class="arithmatex">\(n\)</span> 足够大时 <span class="arithmatex">\(10n^3\leq 2^n\)</span>，所以</p>
 <div class="arithmatex">\[\operatorname{TIME}_{\mathrm{TM}}(10n^3)
   \subseteq
   \operatorname{TIME}_{\mathrm{TM}}(2^n).\]</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 8.3（多项式时间与指数时间）.</strong> <span id="def:p-and-exp"></span> 定义<em>多项式时间</em>（polynomial time）与<em>指数时间</em> （exponential time）复杂度类</p>
 <div class="arithmatex">\[\mathsf P
       =\bigcup_{c\geq 1}\operatorname{TIME}_{\mathrm{TM}}(n^c),
     \qquad
     \mathsf{EXP}
       =\bigcup_{c\geq 1}\operatorname{TIME}_{\mathrm{TM}}(2^{n^c}).\]</div>
+</div>
 <p>显然 <span class="arithmatex">\(\mathsf P\subseteq\mathsf{EXP}\)</span>。本章稍后会证明这个包含关系是严格的。</p>
 <h4 id="811-nand-ram">8.1.1　NAND-RAM 的运行时间<a class="headerlink" href="#811-nand-ram" title="Permanent link">&para;</a></h4>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 8.4（NAND-RAM 的运行时间）.</strong> <span id="def:ram-running-time"></span> 设 <span class="arithmatex">\(T:\mathbb{N}\to\mathbb{N}\)</span>。若存在 <span class="arithmatex">\(n_0\)</span>，使得对所有 <span class="arithmatex">\(n\geq n_0\)</span> 和 <span class="arithmatex">\(x\in\{0,1\}^n\)</span>，NAND-RAM 程序 <span class="arithmatex">\(P\)</span> 都在执行至多 <span class="arithmatex">\(T(n)\)</span> 行后停机，则称 <span class="arithmatex">\(P\)</span> 的运行时间至多为 <span class="arithmatex">\(T(n)\)</span>。</p>
 <p><span class="arithmatex">\(\operatorname{TIME}_{\mathrm{RAM}}(T(n))\)</span> 表示所有能由这种程序计算的布尔函数 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span>。</p>
+</div>
 <p>计算能力相同并不意味着运行时间完全相同，但两个模型之间只有多项式开销。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 8.1（图灵机与 NAND-RAM 的时间模拟）.</strong> <span id="thm:tm-ram-time-simulation"></span> 存在绝对常数 <span class="arithmatex">\(C&gt;0\)</span>，使得对每个满足 <span class="arithmatex">\(T(n)\geq n\)</span> 的函数 <span class="arithmatex">\(T\)</span>，都有</p>
 <div class="arithmatex">\[\operatorname{TIME}_{\mathrm{TM}}(T(n))
     \subseteq
     \operatorname{TIME}_{\mathrm{RAM}}(10T(n))
     \subseteq
     \operatorname{TIME}_{\mathrm{TM}}(C T(n)^4).\]</div>
+</div>
 <p>因此用 NAND-RAM 定义 <span class="arithmatex">\(\mathsf P\)</span> 与 <span class="arithmatex">\(\mathsf{EXP}\)</span> 会得到相同的类：</p>
 <div class="arithmatex">\[\mathsf P
     =\bigcup_{c\geq 1}\operatorname{TIME}_{\mathrm{RAM}}(n^c),
@@ -4776,6 +5174,8 @@ F^*(m)=
     =\bigcup_{c\geq 1}\operatorname{TIME}_{\mathrm{RAM}}(2^{n^c}).\]</div>
 <h3 id="82">8.2　时间层次定理<a class="headerlink" href="#82" title="Permanent link">&para;</a></h3>
 <p>为了执行有时间限制的通用模拟，需要能够在相应时间内算出时间界本身。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 8.5（良好时间界）.</strong> <span id="def:nice-time-bound"></span> 称函数 <span class="arithmatex">\(T:\mathbb{N}\to\mathbb{N}\)</span> 是<em>良好的</em>（nice），如果：</p>
 <ol>
 <li>
@@ -4789,11 +5189,17 @@ F^*(m)=
 </li>
 </ol>
 <p>第三项通常称为<em>时间可构造性</em>（time constructibility）。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 8.2（时间层次定理（Time Hierarchy Theorem））.</strong> <span id="thm:time-hierarchy"></span> 对每个良好函数 <span class="arithmatex">\(T:\mathbb{N}\to\mathbb{N}\)</span>，都存在布尔函数 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span>，使得</p>
 <div class="arithmatex">\[F\in
     \operatorname{TIME}_{\mathrm{RAM}}(T(n)\log n)
     \setminus
     \operatorname{TIME}_{\mathrm{RAM}}(T(n)).\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 对双输入程序，约定输入长度为两部分长度之和。先构造一个带时间限制的停机函数。对足够长的 <span class="arithmatex">\(x\)</span>，定义</p>
 <div class="arithmatex">\[\operatorname{HALT}_T(p,x)=1\]</div>
 <p>当且仅当以下条件同时成立：<span class="arithmatex">\(p\)</span> 是合法 NAND-RAM 程序编码， <span class="arithmatex">\(\lvert p\rvert\leq\log\log\lvert x\rvert\)</span>，并且程序 <span class="arithmatex">\(P_p\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上于 <span class="arithmatex">\(100T(\lvert p\rvert+\lvert x\rvert)\)</span> 行内停机；其他情形令其为 <span class="arithmatex">\(0\)</span>。有限个较短输入上的取值任意固定。</p>
@@ -4843,13 +5249,22 @@ F^*(m)=
 <div class="arithmatex">\[2T(\lvert q\rvert+\lvert z\rvert)
       &lt;100T(\lvert q\rvert+\lvert z\rvert).\]</div>
 <p>若 <span class="arithmatex">\(Q(z)\)</span> 停机，则 <span class="arithmatex">\(\operatorname{HALT}_T(q,z)=1\)</span>，第 3 行又迫使它永远循环；若 <span class="arithmatex">\(Q(z)\)</span> 不停机，则 <span class="arithmatex">\(\operatorname{HALT}_T(q,z)=0\)</span>，第 4 行又迫使它停机。两种情形均矛盾，所以所设的 <span class="arithmatex">\(H\)</span> 不存在。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 8.1.</strong> <span id="cor:p-strict-exp"></span> <span class="arithmatex">\(\mathsf P\subsetneq\mathsf{EXP}\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 取 <span class="arithmatex">\(T(n)=2^n\)</span>。由 <a href="#thm:time-hierarchy">定理 8.2</a>，存在</p>
 <div class="arithmatex">\[F\in\operatorname{TIME}_{\mathrm{RAM}}(2^n\log n)
       \setminus\operatorname{TIME}_{\mathrm{RAM}}(2^n).\]</div>
 <p>对任意常数 <span class="arithmatex">\(c\)</span>，当 <span class="arithmatex">\(n\)</span> 足够大时 <span class="arithmatex">\(n^c\leq 2^n\)</span>，故 <span class="arithmatex">\(\mathsf P\subseteq\operatorname{TIME}_{\mathrm{RAM}}(2^n)\)</span>；另一方面 <span class="arithmatex">\(2^n\log n\leq 2^{n^2}\)</span>，所以 <span class="arithmatex">\(F\in\mathsf{EXP}\)</span>。因此 <span class="arithmatex">\(F\in\mathsf{EXP}\setminus\mathsf P\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="83">8.3　线路规模与非一致计算<a class="headerlink" href="#83" title="Permanent link">&para;</a></h3>
 <p>时间有界的程序可以针对每个输入长度展开成一张布尔电路。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 8.6（线路规模类）.</strong> <span id="def:circuit-size-class"></span> 对布尔函数 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span>，记</p>
 <div class="arithmatex">\[F_n:\{0,1\}^n\to\{0,1\},
     \qquad
@@ -4857,17 +5272,32 @@ F^*(m)=
 <p><span class="arithmatex">\(\operatorname{SIZE}_n(s)\)</span> 表示所有能由至多 <span class="arithmatex">\(s\)</span> 个 NAND 门计算的 <span class="arithmatex">\(n\)</span> 输入布尔函数。若存在常数 <span class="arithmatex">\(C&gt;0\)</span> 和 <span class="arithmatex">\(n_0\)</span>，使得对所有 <span class="arithmatex">\(n\geq n_0\)</span> 都有</p>
 <div class="arithmatex">\[F_n\in\operatorname{SIZE}_n(C T(n)),\]</div>
 <p>则记 <span class="arithmatex">\(F\in\operatorname{SIZE}(T(n))\)</span>。换言之，<span class="arithmatex">\(\operatorname{SIZE}(T(n))\)</span> 使用渐近规模界 <span class="arithmatex">\(O(T(n))\)</span>。这里允许不同输入长度使用不同电路，这些电路合称一个<em>线路族</em>（circuit family）。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 8.3（从运行时间到线路规模）.</strong> <span id="thm:time-to-circuit-size"></span> 对每个良好函数 <span class="arithmatex">\(T\)</span>，</p>
 <div class="arithmatex">\[\operatorname{TIME}_{\mathrm{RAM}}(T(n))
       \subseteq\operatorname{SIZE}(T(n)^3).\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明思路.</strong> 固定程序和输入长度 <span class="arithmatex">\(n\)</span>，把至多 <span class="arithmatex">\(T(n)\)</span> 行的计算按时间展开。每一层电路根据上一时刻的程序位置、寄存器和已访问内存计算下一时刻的配置。用选择器实现随机访问后，每层需要至多 <span class="arithmatex">\(O(T(n)^2)\)</span> 个门，共有 <span class="arithmatex">\(T(n)\)</span> 层，因此总规模至多为 <span class="arithmatex">\(O(T(n)^3)\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 8.7（多项式规模线路）.</strong> <span id="def:p-poly"></span> 定义</p>
 <div class="arithmatex">\[\mathsf{P/poly}
       =\bigcup_{c\geq 1}\operatorname{SIZE}(n^c).\]</div>
 <p>这是由多项式规模线路族计算的函数类。</p>
+</div>
 <p>由 <a href="#thm:time-to-circuit-size">定理 8.3</a> 可知 <span class="arithmatex">\(\mathsf P\subseteq\mathsf{P/poly}\)</span>。这个模型是<em>非一致的</em> （nonuniform）：它只要求每个长度存在一张小电路，并不要求存在一个算法统一生成这些电路。这个区别甚至允许 <span class="arithmatex">\(\mathsf{P/poly}\)</span> 包含不可计算函数。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 8.4（<span class="arithmatex">\(\mathsf{P/poly}\)</span> 中的不可计算函数）.</strong> <span id="thm:p-poly-uncomputable"></span> 存在不可计算函数 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span>，满足 <span class="arithmatex">\(F\in\mathsf{P/poly}\)</span>。因而</p>
 <div class="arithmatex">\[\mathsf P\subsetneq\mathsf{P/poly}.\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 对 <span class="arithmatex">\(n\geq 1\)</span>，把 <span class="arithmatex">\(n\)</span> 的二进制表示写成 <span class="arithmatex">\(1y\)</span>，并令 <span class="arithmatex">\(s(n)=y\)</span>；也就是说， <span class="arithmatex">\(s\)</span> 删除二进制表示的最高位；另约定 <span class="arithmatex">\(s(0)=\varepsilon\)</span>。映射 <span class="arithmatex">\(s:\mathbb{N}\to\{0,1\}^{*}\)</span> 是满射。 定义<em>一元停机函数</em>（unary halting function）</p>
 <div class="arithmatex">\[\operatorname{UH}(x)
       =\operatorname{HALT}_0\bigl(s(\lvert x\rvert)\bigr).\]</div>
@@ -4875,19 +5305,26 @@ F^*(m)=
 <div class="arithmatex">\[\operatorname{UH}(0^n)=\operatorname{HALT}_0(y),\]</div>
 <p>从而可以计算 <span class="arithmatex">\(\operatorname{HALT}_0\)</span>，与 <a href="#thm:halt-on-zero-uncomputable">定理 7.4</a> 矛盾。</p>
 <p>另一方面，固定输入长度 <span class="arithmatex">\(n\)</span> 后，<span class="arithmatex">\(\operatorname{UH}(x)\)</span> 的值只依赖于 <span class="arithmatex">\(n\)</span>， 对所有 <span class="arithmatex">\(x\in\{0,1\}^n\)</span> 都是同一个常数。常数函数可由常数规模 NAND 电路计算， 所以 <span class="arithmatex">\(\operatorname{UH}\in\operatorname{SIZE}(O(1))\subseteq\mathsf{P/poly}\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h2 id="chap:polynomial-running-time">第 9 章　多项式运行时间<a class="headerlink" href="#chap:polynomial-running-time" title="Permanent link">&para;</a></h2>
 <p>本章研究多项式时间归约和多项式时间验证，并由此定义复杂度类 <span class="arithmatex">\(\mathsf{NP}\)</span>。 以下判定问题都视为从 <span class="arithmatex">\(\{0,1\}^{*}\)</span> 到 <span class="arithmatex">\(\{0,1\}\)</span> 的布尔函数；非法实例的函数值约定为 <span class="arithmatex">\(0\)</span>。</p>
 <h3 id="91">9.1　三个判定问题<a class="headerlink" href="#91" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 9.1（3SAT）.</strong> <span id="def:3sat"></span> 一个<em>文字</em>（literal）是布尔变量 <span class="arithmatex">\(x_i\)</span> 或其否定 <span class="arithmatex">\(\lnot x_i\)</span>；三个文字的析取称为一个<em>子句</em>（clause）。若公式是若干个三文字子句的合取，则称它为<em>三合取范式</em>（3-conjunctive normal form, 3CNF）。</p>
 <p>3SAT 问题询问：给定一个 3CNF 公式 <span class="arithmatex">\(\varphi\)</span>，是否存在对其变量的布尔赋值， 使 <span class="arithmatex">\(\varphi\)</span> 为真？存在这种赋值时，称 <span class="arithmatex">\(\varphi\)</span> 是<em>可满足的</em> （satisfiable）。</p>
+</div>
 <p>例如，</p>
 <div class="arithmatex">\[\varphi=
   (x_0\lor\lnot x_1\lor x_2)
   \land(x_1\lor x_2\lor\lnot x_3)
   \land(\lnot x_0\lor\lnot x_2\lor x_3)\]</div>
 <p>是一个含变量 <span class="arithmatex">\(x_0,x_1,x_2,x_3\)</span> 的 3CNF 公式。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 9.2（0/1 整数方程）.</strong> <span id="def:zero-one-equations"></span> <em>0/1 整数方程问题</em>（0/1 integer equations, 01EQ）的输入是 <span class="arithmatex">\(A\in\mathbb{N}^{m\times n}\)</span> 和 <span class="arithmatex">\(b\in\mathbb{N}^m\)</span>。它询问是否存在 <span class="arithmatex">\(x\in\{0,1\}^n\)</span>，使得</p>
 <div class="arithmatex">\[Ax=b.\]</div>
+</div>
 <p>例如，方程组</p>
 <div class="arithmatex">\[x_0+x_1+x_2=0,
   \qquad
@@ -4897,30 +5334,59 @@ F^*(m)=
   \qquad
   x_i\in\{0,1\}\]</div>
 <p>没有解：第一个方程迫使三个变量全为 <span class="arithmatex">\(0\)</span>，与后两个方程矛盾。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 9.3（子集和）.</strong> <span id="def:subset-sum"></span> <em>子集和问题</em>（Subset Sum）的输入是目标值 <span class="arithmatex">\(t\)</span>，以及一列用二进制编码的非负整数 <span class="arithmatex">\(a_1,\ldots,a_n\)</span>。它询问是否存在 <span class="arithmatex">\(I\subseteq\{1,\ldots,n\}\)</span>，使得</p>
 <div class="arithmatex">\[\sum_{i\in I}a_i=t.\]</div>
 <p>允许输入中出现 <span class="arithmatex">\(0\)</span> 不改变问题，因为所有值为 <span class="arithmatex">\(0\)</span> 的项都可以直接删除。</p>
+</div>
 <h3 id="92">9.2　多项式时间归约<a class="headerlink" href="#92" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 9.4（多项式时间归约）.</strong> <span id="def:polynomial-time-reduction"></span> 对布尔函数 <span class="arithmatex">\(F,G:\{0,1\}^{*}\to\{0,1\}\)</span>，如果存在一个多项式时间可计算函数 <span class="arithmatex">\(R:\{0,1\}^{*}\to\{0,1\}^{*}\)</span>，使得对每个 <span class="arithmatex">\(x\in\{0,1\}^{*}\)</span> 都有</p>
 <div class="arithmatex">\[F(x)=G(R(x)),\]</div>
 <p>则称 <span class="arithmatex">\(F\)</span> 可以<em>多项式时间多对一归约</em> （polynomial-time many-one reduction）到 <span class="arithmatex">\(G\)</span>，记作 <span class="arithmatex">\(F\leq_{\mathrm p}G\)</span>。</p>
+</div>
 <p>归约把 <span class="arithmatex">\(F\)</span> 的实例变成 <span class="arithmatex">\(G\)</span> 的实例，并保持答案不变。因此 <span class="arithmatex">\(G\)</span> 的算法也会给出 <span class="arithmatex">\(F\)</span> 的算法。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>命题 9.1.</strong> <span id="prop:reduction-preserves-p"></span> 若 <span class="arithmatex">\(F\leq_{\mathrm p}G\)</span> 且 <span class="arithmatex">\(G\in\mathsf P\)</span>，则 <span class="arithmatex">\(F\in\mathsf P\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 给定 <span class="arithmatex">\(x\)</span>，先计算 <span class="arithmatex">\(R(x)\)</span>，再运行 <span class="arithmatex">\(G\)</span> 的多项式时间算法并输出 <span class="arithmatex">\(G(R(x))\)</span>。 因为多项式时间程序的输出长度不超过其运行时间，<span class="arithmatex">\(\lvert R(x)\rvert\)</span> 也由 <span class="arithmatex">\(\operatorname{poly}(\lvert x\rvert)\)</span> 控制。因此总运行时间为</p>
 <div class="arithmatex">\[\operatorname{poly}(\lvert x\rvert)
       +\operatorname{poly}(\lvert R(x)\rvert)
     =\operatorname{poly}(\lvert x\rvert).\]</div>
 <p><span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 9.1（归约的传递性）.</strong> <span id="cor:reduction-transitive"></span> 若 <span class="arithmatex">\(F\leq_{\mathrm p}G\)</span> 且 <span class="arithmatex">\(G\leq_{\mathrm p}H\)</span>，则 <span class="arithmatex">\(F\leq_{\mathrm p}H\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 复合两个归约即可；两个多项式的复合仍是多项式。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h4 id="921">9.2.1　归约的例子<a class="headerlink" href="#921" title="Permanent link">&para;</a></h4>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>命题 9.2.</strong> <span id="prop:3sat-reduces-zero-one-equations"></span> <span class="arithmatex">\(\operatorname{3SAT}\leq_{\mathrm p}\operatorname{01EQ}\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 对 3SAT 中的每个变量 <span class="arithmatex">\(x_i\)</span>，引入两个 0/1 未知数 <span class="arithmatex">\(u_i,\bar u_i\)</span>，分别表示 <span class="arithmatex">\(x_i\)</span> 与 <span class="arithmatex">\(\lnot x_i\)</span> 的真值，并加入</p>
 <div class="arithmatex">\[u_i+\bar u_i=1.\]</div>
 <p>考虑一个子句 <span class="arithmatex">\(\ell_1\lor\ell_2\lor\ell_3\)</span>。用 <span class="arithmatex">\(z_j\)</span> 表示文字 <span class="arithmatex">\(\ell_j\)</span> 对应的 <span class="arithmatex">\(u_i\)</span> 或 <span class="arithmatex">\(\bar u_i\)</span>，再引入两个新的 0/1 未知数 <span class="arithmatex">\(y_1,y_2\)</span>，加入方程</p>
 <div class="arithmatex">\[z_1+z_2+z_3+y_1+y_2=3.\]</div>
 <p>当且仅当 <span class="arithmatex">\(z_1+z_2+z_3\geq1\)</span> 时，才能选择 <span class="arithmatex">\(y_1,y_2\in\{0,1\}\)</span> 使该式成立， 因而这个方程恰好表达原子句为真。每个变量增加一个方程，每个子句增加一个方程和两个未知数，所以变换可在多项式时间内完成，并保持可满足性。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>命题 9.3.</strong> <span id="prop:zero-one-equations-reduces-subset-sum"></span> <span class="arithmatex">\(\operatorname{01EQ}\leq_{\mathrm p}\operatorname{SUBSET\text{-}SUM}\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 给定 <span class="arithmatex">\(A\in\mathbb{N}^{m\times n}\)</span> 与 <span class="arithmatex">\(b\in\mathbb{N}^m\)</span>，记 <span class="arithmatex">\(A_j\)</span> 为 <span class="arithmatex">\(A\)</span> 的第 <span class="arithmatex">\(j\)</span> 列。选择整数</p>
 <div class="arithmatex">\[B&gt;\max_{1\leq i\leq m}
       \left\{b_i,\sum_{j=1}^n A_{ij}\right\},\]</div>
@@ -4933,10 +5399,13 @@ F^*(m)=
     \quad\Longleftrightarrow\quad
     \sum_{j\in I}A_j=b.\]</div>
 <p>令 <span class="arithmatex">\(x_j=1\)</span> 当且仅当 <span class="arithmatex">\(j\in I\)</span>，右侧正是 <span class="arithmatex">\(Ax=b\)</span>。这些整数的二进制长度为 <span class="arithmatex">\(O(m\log B)\)</span>，所以整个变换是多项式时间的。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>结合命题 <a href="#prop:3sat-reduces-zero-one-equations">9.2</a>、 命题 <a href="#prop:zero-one-equations-reduces-subset-sum">9.3</a>及推论 <a href="#cor:reduction-transitive">9.1</a>，可得</p>
 <div class="arithmatex">\[\operatorname{3SAT}
     \leq_{\mathrm p}\operatorname{SUBSET\text{-}SUM}.\]</div>
 <h3 id="93-mathsfnp">9.3　多项式时间验证与 <span class="arithmatex">\(\mathsf{NP}\)</span><a class="headerlink" href="#93-mathsfnp" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 9.5（多项式时间可验证）.</strong> <span id="def:polynomial-time-verifiable"></span> 称布尔函数 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span> 是<em>多项式时间可验证的</em> （polynomial-time verifiable），如果存在多项式 <span class="arithmatex">\(p\)</span> 和多项式时间图灵机 <span class="arithmatex">\(V\)</span>，使得对每个 <span class="arithmatex">\(x\in\{0,1\}^{*}\)</span>，</p>
 <div class="arithmatex">\[F(x)=1
     \quad\Longleftrightarrow\quad
@@ -4944,7 +5413,10 @@ F^*(m)=
       \lvert t\rvert\leq p(\lvert x\rvert)
       \ \text{且}\ V(x,t)=1.\]</div>
 <p>字符串 <span class="arithmatex">\(t\)</span> 称为 <span class="arithmatex">\(x\)</span> 的<em>证书</em>（certificate）或<em>见证</em> （witness），<span class="arithmatex">\(V\)</span> 称为<em>验证器</em>（verifier）。</p>
+</div>
 <p>3SAT 是多项式时间可验证的：证书只需给出所有变量的赋值。</p>
+<div class="admonition tcs-algorithm">
+<p class="admonition-title">Tcs-algorithm</p>
 <p><strong>Pseudocode: Verifier <span class="arithmatex">\(V_{\mathrm{3SAT}}\)</span> (input <span class="arithmatex">\((\varphi,t)\)</span>)</strong></p>
 <ol>
 <li>
@@ -4957,35 +5429,71 @@ F^*(m)=
 <p>Return <span class="arithmatex">\(1\)</span> if all clauses are true, and return <span class="arithmatex">\(0\)</span> otherwise.</p>
 </li>
 </ol>
+</div>
 <p>公式和赋值都只需扫描常数次，所以该验证器在输入长度的多项式时间内停机。</p>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 9.6（<span class="arithmatex">\(\mathsf{NP}\)</span>）.</strong> <span id="def:np"></span> <span class="arithmatex">\(\mathsf{NP}\)</span> 是所有多项式时间可验证布尔函数的集合。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 9.1.</strong> <span id="thm:p-subset-np-subset-exp"></span></p>
 <div class="arithmatex">\[\mathsf P\subseteq\mathsf{NP}\subseteq\mathsf{EXP}.\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 若 <span class="arithmatex">\(F\in\mathsf P\)</span>，令验证器忽略证书并直接运行 <span class="arithmatex">\(F\)</span> 的多项式时间算法，便有 <span class="arithmatex">\(F\in\mathsf{NP}\)</span>。</p>
 <p>再设 <span class="arithmatex">\(F\in\mathsf{NP}\)</span>，其验证器为 <span class="arithmatex">\(V\)</span>，证书长度至多为 <span class="arithmatex">\(p(n)\leq n^c\)</span>。给定长度为 <span class="arithmatex">\(n\)</span> 的输入 <span class="arithmatex">\(x\)</span>，枚举所有长度不超过 <span class="arithmatex">\(p(n)\)</span> 的字符串 <span class="arithmatex">\(t\)</span>，逐一运行 <span class="arithmatex">\(V(x,t)\)</span>；找到接受证书便输出 <span class="arithmatex">\(1\)</span>，全部拒绝则输出 <span class="arithmatex">\(0\)</span>。 候选证书少于 <span class="arithmatex">\(2^{p(n)+1}\)</span> 个，每次验证只需多项式时间，故总时间为 <span class="arithmatex">\(2^{\operatorname{poly}(n)}\)</span>，即 <span class="arithmatex">\(F\in\mathsf{EXP}\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <p>目前普遍猜测</p>
 <div class="arithmatex">\[\mathsf P\neq\mathsf{NP},
   \qquad
   \mathsf{NP}\neq\mathsf{EXP},\]</div>
 <p>但这两个等式是否成立都仍未知。上一章已经证明 <span class="arithmatex">\(\mathsf P\neq\mathsf{EXP}\)</span>，所以两个包含关系不可能同时取等号。</p>
 <h3 id="94-mathsfnp">9.4　<span class="arithmatex">\(\mathsf{NP}\)</span> 完全性<a class="headerlink" href="#94-mathsfnp" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 9.7（<span class="arithmatex">\(\mathsf{NP}\)</span> 困难与 <span class="arithmatex">\(\mathsf{NP}\)</span> 完全）.</strong> <span id="def:np-hard-complete"></span> 若对每个 <span class="arithmatex">\(F\in\mathsf{NP}\)</span> 都有 <span class="arithmatex">\(F\leq_{\mathrm p}G\)</span>，则称 <span class="arithmatex">\(G\)</span> 是 <em><span class="arithmatex">\(\mathsf{NP}\)</span> 困难的</em>（<span class="arithmatex">\(\mathsf{NP}\)</span>-hard）。如果进一步有 <span class="arithmatex">\(G\in\mathsf{NP}\)</span>，则称 <span class="arithmatex">\(G\)</span> 是<em><span class="arithmatex">\(\mathsf{NP}\)</span> 完全的</em> （<span class="arithmatex">\(\mathsf{NP}\)</span>-complete）。</p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 9.2.</strong> <span id="cor:np-complete-in-p-implies-p-np"></span> 如果某个 <span class="arithmatex">\(\mathsf{NP}\)</span> 完全函数属于 <span class="arithmatex">\(\mathsf P\)</span>，则 <span class="arithmatex">\(\mathsf P=\mathsf{NP}\)</span>。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 设 <span class="arithmatex">\(G\)</span> 是这样的函数。对任意 <span class="arithmatex">\(F\in\mathsf{NP}\)</span>，完全性给出 <span class="arithmatex">\(F\leq_{\mathrm p}G\)</span>；再由 <a href="#prop:reduction-preserves-p">命题 9.1</a> 可得 <span class="arithmatex">\(F\in\mathsf P\)</span>。因此 <span class="arithmatex">\(\mathsf{NP}\subseteq\mathsf P\)</span>，结合 <a href="#thm:p-subset-np-subset-exp">定理 9.1</a> 即得结论。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>定理 9.2（Cook--Levin 定理）.</strong> <span id="thm:cook-levin"></span> <span class="arithmatex">\(\operatorname{3SAT}\)</span> 是 <span class="arithmatex">\(\mathsf{NP}\)</span> 完全的。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明思路.</strong> 前面的验证器已经说明 <span class="arithmatex">\(\operatorname{3SAT}\in\mathsf{NP}\)</span>。对任意 <span class="arithmatex">\(F\in\mathsf{NP}\)</span>，固定其多项式时间验证器 <span class="arithmatex">\(V\)</span>。给定 <span class="arithmatex">\(x\)</span>，用布尔变量编码一个多项式长度的证书，以及 <span class="arithmatex">\(V(x,t)\)</span> 的整张多项式大小计算表；再用局部约束表达初始配置、相邻配置之间的合法转移和最终接受。所得公式可借助辅助变量在多项式规模内转成 3CNF，并且它可满足当且仅当存在使 <span class="arithmatex">\(V(x,t)=1\)</span> 的证书。 因此 <span class="arithmatex">\(F\leq_{\mathrm p}\operatorname{3SAT}\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 9.3.</strong> <span id="cor:3sat-in-p-iff-p-np"></span></p>
 <div class="arithmatex">\[\operatorname{3SAT}\in\mathsf P
     \quad\Longleftrightarrow\quad
     \mathsf P=\mathsf{NP}.\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 正向由定理 <a href="#thm:cook-levin">9.2</a>和推论 <a href="#cor:np-complete-in-p-implies-p-np">9.2</a>得到；反向则由 <span class="arithmatex">\(\operatorname{3SAT}\in\mathsf{NP}\)</span> 立即得到。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h2 id="chap:randomized-algorithms">第 10 章　随机化算法<a class="headerlink" href="#chap:randomized-algorithms" title="Permanent link">&para;</a></h2>
 <p>随机化算法在计算过程中使用独立的随机比特。它不要求每次运行都给出正确答案， 而是要求在每个输入上都以足够大的概率正确，并且所有随机分支均在规定时间内停机。</p>
 <h3 id="101-mathsfbpp">10.1　随机图灵机与 <span class="arithmatex">\(\mathsf{BPP}\)</span><a class="headerlink" href="#101-mathsfbpp" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 10.1（随机图灵机）.</strong> <span id="def:randomized-turing-machine"></span> <em>随机图灵机</em>（randomized Turing machine, RAND-TM）是在 NAND-TM 上增加指令</p>
 <div class="arithmatex">\[\texttt{b = RAND()},\]</div>
 <p>其中每次调用都独立地以相同概率返回 <span class="arithmatex">\(0\)</span> 或 <span class="arithmatex">\(1\)</span>。等价地，机器在每一步可以在两个后继配置中等概率选择一个，因此也称为<em>概率图灵机</em> （probabilistic Turing machine）。</p>
 <p>固定机器使用的随机比特串 <span class="arithmatex">\(r\)</span> 后，计算完全确定，记其输出为 <span class="arithmatex">\(P(x;r)\)</span>。</p>
+</div>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 10.2（<span class="arithmatex">\(\mathsf{BPP}\)</span>）.</strong> <span id="def:bpp"></span> 对布尔函数 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span>，若存在随机图灵机 <span class="arithmatex">\(P\)</span> 和多项式 <span class="arithmatex">\(q\)</span>， 使得对每个输入 <span class="arithmatex">\(x\)</span>：</p>
 <ol>
 <li>
@@ -4997,13 +5505,19 @@ F^*(m)=
 </li>
 </ol>
 <p>则称 <span class="arithmatex">\(F\in\mathsf{BPP}\)</span>。所有满足上述条件的布尔函数构成复杂度类 <span class="arithmatex">\(\mathsf{BPP}\)</span>（bounded-error probabilistic polynomial time）。</p>
+</div>
 <p>常数 <span class="arithmatex">\(2/3\)</span> 并不特殊；任意严格大于 <span class="arithmatex">\(1/2\)</span> 的常数成功率都给出同一个复杂度类。 这是下面成功概率放大引理的直接结果。</p>
 <h3 id="102">10.2　成功概率放大<a class="headerlink" href="#102" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>引理 10.1（放大引理）.</strong> <span id="lem:bpp-amplification"></span> 设随机多项式时间机器 <span class="arithmatex">\(P\)</span> 计算 <span class="arithmatex">\(F:\{0,1\}^{*}\to\{0,1\}\)</span>，并且存在常数 <span class="arithmatex">\(0\leq\delta&lt;1/2\)</span>，使得对每个 <span class="arithmatex">\(x\)</span> 都有</p>
 <div class="arithmatex">\[\Pr_r\bigl[P(x;r)=F(x)\bigr]\geq1-\delta.\]</div>
 <p>那么对任意取正整数值的多项式 <span class="arithmatex">\(p\)</span>，都存在随机多项式时间机器 <span class="arithmatex">\(Q\)</span>，满足</p>
 <div class="arithmatex">\[\Pr_r\bigl[Q(x;r)=F(x)\bigr]
       \geq 1-2^{-p(\lvert x\rvert)}.\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 记 <span class="arithmatex">\(n=\lvert x\rvert\)</span>，并令</p>
 <div class="arithmatex">\[k(n)=\left\lceil
       \frac{p(n)}{-\log_2\!\bigl(4\delta(1-\delta)\bigr)}
@@ -5028,18 +5542,36 @@ F^*(m)=
        \leq 2^{-p(n)}.
   \end{aligned}\]</div>
 <p>这里使用了 <span class="arithmatex">\(e\leq\delta&lt;1/2\)</span>，以及 <span class="arithmatex">\(\sum_{i=k}^{2k}\binom{2k}{i}\leq2^{2k}\)</span>。重复次数仍为多项式，所以 <span class="arithmatex">\(Q\)</span> 仍在多项式时间内运行。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 10.1（固定随机串的刻画）.</strong> <span id="cor:bpp-random-string-characterization"></span> <span class="arithmatex">\(F\in\mathsf{BPP}\)</span> 当且仅当存在确定性多项式时间算法 <span class="arithmatex">\(G\)</span> 和多项式 <span class="arithmatex">\(q\)</span>， 使得对每个 <span class="arithmatex">\(x\in\{0,1\}^{*}\)</span>，</p>
 <div class="arithmatex">\[\Pr_{r\sim\{0,1\}^{q(\lvert x\rvert)}}
       \bigl[G(x,r)=F(x)\bigr]\geq\frac23,\]</div>
 <p>其中 <span class="arithmatex">\(r\)</span> 在 <span class="arithmatex">\(\{0,1\}^{q(\lvert x\rvert)}\)</span> 上均匀分布。</p>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 随机多项式时间机器只能读取多项式个随机比特；把这些比特预先写成 <span class="arithmatex">\(r\)</span>，即可用确定性算法模拟它。反之，随机生成 <span class="arithmatex">\(r\)</span> 后运行 <span class="arithmatex">\(G(x,r)\)</span>，便得到随机多项式时间算法。 <span class="arithmatex">\(\square\)</span></p>
+</div>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>命题 10.1.</strong> <span id="prop:p-subset-bpp-subset-exp"></span></p>
 <div class="arithmatex">\[\mathsf P\subseteq\mathsf{BPP}\subseteq\mathsf{EXP}.\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 确定性算法可以完全不使用随机比特，所以 <span class="arithmatex">\(\mathsf P\subseteq\mathsf{BPP}\)</span>。</p>
 <p>对 <span class="arithmatex">\(F\in\mathsf{BPP}\)</span>，使用<a href="#cor:bpp-random-string-characterization">推论 10.1</a>中的 <span class="arithmatex">\(G\)</span> 和 <span class="arithmatex">\(q\)</span>。给定长度为 <span class="arithmatex">\(n\)</span> 的 <span class="arithmatex">\(x\)</span>，枚举全部 <span class="arithmatex">\(2^{q(n)}\)</span> 个随机串 <span class="arithmatex">\(r\)</span>， 并输出 <span class="arithmatex">\(G(x,r)\)</span> 的多数值。因为正确率至少为 <span class="arithmatex">\(2/3\)</span>，多数值就是 <span class="arithmatex">\(F(x)\)</span>； 总运行时间为 <span class="arithmatex">\(2^{\operatorname{poly}(n)}\)</span>，故 <span class="arithmatex">\(F\in\mathsf{EXP}\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="103">10.3　随机性与非一致线路<a class="headerlink" href="#103" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>推论 10.2.</strong> <span id="cor:bpp-subset-p-poly"></span></p>
 <div class="arithmatex">\[\mathsf{BPP}\subseteq\mathsf{P/poly}.\]</div>
+</div>
+<div class="admonition tcs-proof">
+<p class="admonition-title">Tcs-proof</p>
 <p><strong>证明.</strong> 设 <span class="arithmatex">\(F\in\mathsf{BPP}\)</span>。由<a href="#lem:bpp-amplification">引理 10.1</a>，可取随机多项式时间机器 <span class="arithmatex">\(Q\)</span>，使每个长度为 <span class="arithmatex">\(n\)</span> 的输入的错误率至多 <span class="arithmatex">\(2^{-(n+4)}\)</span>。把 <span class="arithmatex">\(Q\)</span> 使用的多项式个随机比特统一写成 <span class="arithmatex">\(r\)</span>，由并集界（union bound），</p>
 <div class="arithmatex">\[\begin{aligned}
     \Pr_r\bigl[\exists x\in\{0,1\}^n:\ Q(x;r)\neq F(x)\bigr]
@@ -5049,7 +5581,10 @@ F^*(m)=
        =\frac1{16}&lt;1.
   \end{aligned}\]</div>
 <p>因而对每个 <span class="arithmatex">\(n\)</span>，都存在一个固定的 <span class="arithmatex">\(r_n\)</span>，使 <span class="arithmatex">\(Q(x;r_n)=F(x)\)</span> 对所有 <span class="arithmatex">\(x\in\{0,1\}^n\)</span> 同时成立。把 <span class="arithmatex">\(r_n\)</span> 硬编码进 <span class="arithmatex">\(Q\)</span> 的计算线路，便得到计算 <span class="arithmatex">\(F\vert_{\{0,1\}^n}\)</span> 的多项式规模线路。因此 <span class="arithmatex">\(F\in\mathsf{P/poly}\)</span>。 <span class="arithmatex">\(\square\)</span></p>
+</div>
 <h3 id="104">10.4　伪随机生成器<a class="headerlink" href="#104" title="Permanent link">&para;</a></h3>
+<div class="admonition tcs-definition">
+<p class="admonition-title">Tcs-definition</p>
 <p><strong>定义 10.3（伪随机生成器）.</strong> <span id="def:pseudorandom-generator"></span> 设 <span class="arithmatex">\(\ell&lt;m\)</span>，函数</p>
 <div class="arithmatex">\[G:\{0,1\}^\ell\to\{0,1\}^m\]</div>
 <p>称为一个 <span class="arithmatex">\((T,\varepsilon)\)</span>-<em>伪随机生成器</em> （pseudorandom generator, PRG），如果对每个至多含 <span class="arithmatex">\(T\)</span> 个门、具有 <span class="arithmatex">\(m\)</span> 个输入的布尔线路 <span class="arithmatex">\(C\)</span>，都有</p>
@@ -5059,9 +5594,13 @@ F^*(m)=
     \right|
     \leq\varepsilon.\]</div>
 <p>这里 <span class="arithmatex">\(s\)</span> 称为<em>种子</em>（seed）；两个概率中的 <span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(r\)</span> 都服从各自集合上的均匀分布。</p>
+</div>
 <p>也就是说，规模不超过 <span class="arithmatex">\(T\)</span> 的线路无法以超过 <span class="arithmatex">\(\varepsilon\)</span> 的优势区分 <span class="arithmatex">\(G(s)\)</span> 与真正均匀的 <span class="arithmatex">\(m\)</span> 比特串。典型的强参数目标是 <span class="arithmatex">\(m=2^\ell\)</span> 和 <span class="arithmatex">\(\varepsilon=2^{-\ell}\)</span>；实际强度还必须连同可抵抗的线路规模 <span class="arithmatex">\(T\)</span> 一起讨论。</p>
+<div class="admonition tcs-theorem">
+<p class="admonition-title">Tcs-theorem</p>
 <p><strong>引理 10.2.</strong> <span id="lem:p-equals-np-implies-bpp-equals-p"></span> 如果 <span class="arithmatex">\(\mathsf P=\mathsf{NP}\)</span>，那么</p>
 <div class="arithmatex">\[\mathsf{BPP}=\mathsf P.\]</div>
+</div>
 
 
 

@@ -1,0 +1,115 @@
+.md-typeset .admonition[class*=" tcs-"] {
+  --tcs-accent: #5c6bc0;
+  --tcs-border: rgba(92, 107, 192, 0.3);
+  --tcs-background: rgba(92, 107, 192, 0.045);
+
+  margin: 1.25rem 0;
+  padding: 0.9rem 1.05rem;
+  border: 1px solid var(--tcs-border);
+  border-top: 0.16rem solid var(--tcs-accent);
+  border-radius: 0.4rem;
+  background: var(--tcs-background);
+  box-shadow: 0 0.08rem 0.2rem rgba(0, 0, 0, 0.04);
+  font-size: inherit;
+}
+
+.md-typeset .admonition[class*=" tcs-"] > .admonition-title {
+  display: none;
+}
+
+.md-typeset .admonition[class*=" tcs-"] > .admonition-title + * {
+  margin-top: 0;
+}
+
+.md-typeset .admonition[class*=" tcs-"] > :last-child {
+  margin-bottom: 0;
+}
+
+.md-typeset .admonition[class*=" tcs-"] > .admonition-title + p > strong:first-child {
+  color: var(--tcs-accent);
+}
+
+.tcs-figure {
+  display: block;
+  margin: 1rem auto;
+}
+
+.md-typeset .admonition.tcs-theorem {
+  --tcs-accent: #7e57c2;
+  --tcs-border: rgba(126, 87, 194, 0.3);
+  --tcs-background: rgba(126, 87, 194, 0.045);
+}
+
+.md-typeset .admonition.tcs-example {
+  --tcs-accent: #388e3c;
+  --tcs-border: rgba(56, 142, 60, 0.28);
+  --tcs-background: rgba(56, 142, 60, 0.04);
+}
+
+.md-typeset .admonition.tcs-proof {
+  --tcs-accent: #607d8b;
+  --tcs-border: rgba(96, 125, 139, 0.28);
+  --tcs-background: rgba(96, 125, 139, 0.035);
+}
+
+.md-typeset .admonition.tcs-question {
+  --tcs-accent: #00838f;
+  --tcs-border: rgba(0, 131, 143, 0.28);
+  --tcs-background: rgba(0, 131, 143, 0.04);
+}
+
+.md-typeset .admonition.tcs-remark {
+  --tcs-accent: #e08a00;
+  --tcs-border: rgba(224, 138, 0, 0.3);
+  --tcs-background: rgba(224, 138, 0, 0.045);
+}
+
+.md-typeset .admonition.tcs-algorithm {
+  --tcs-accent: #546e7a;
+  --tcs-border: rgba(84, 110, 122, 0.3);
+  --tcs-background: rgba(84, 110, 122, 0.04);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition[class*=" tcs-"] {
+  --tcs-accent: #9fa8da;
+  --tcs-border: rgba(121, 134, 203, 0.45);
+  --tcs-background: rgba(121, 134, 203, 0.08);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.tcs-theorem {
+  --tcs-accent: #b39ddb;
+  --tcs-border: rgba(179, 157, 219, 0.45);
+  --tcs-background: rgba(179, 157, 219, 0.08);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.tcs-example {
+  --tcs-accent: #81c784;
+  --tcs-border: rgba(129, 199, 132, 0.42);
+  --tcs-background: rgba(129, 199, 132, 0.07);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.tcs-proof,
+[data-md-color-scheme="slate"] .md-typeset .admonition.tcs-algorithm {
+  --tcs-accent: #90a4ae;
+  --tcs-border: rgba(144, 164, 174, 0.42);
+  --tcs-background: rgba(144, 164, 174, 0.065);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.tcs-question {
+  --tcs-accent: #4dd0e1;
+  --tcs-border: rgba(77, 208, 225, 0.42);
+  --tcs-background: rgba(77, 208, 225, 0.07);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.tcs-remark {
+  --tcs-accent: #ffb74d;
+  --tcs-border: rgba(255, 183, 77, 0.45);
+  --tcs-background: rgba(255, 183, 77, 0.075);
+}
+
+@media (max-width: 44.984375em) {
+  .md-typeset .admonition[class*=" tcs-"] {
+    margin: 1rem 0;
+    padding: 0.75rem 0.8rem;
+  }
+}
