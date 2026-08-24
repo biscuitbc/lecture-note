@@ -60,6 +60,7 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/pdf.css
+  - stylesheets/tcs.css
 
 extra_javascript:
   - javascripts/mathjax.js
