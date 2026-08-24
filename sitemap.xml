@@ -17,14 +17,6 @@
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/algebra/abstract_algebra_summary/</loc>
-         <lastmod>2026-08-24</lastmod>
-    </url>
-    <url>
-         <loc>https://note.biscuitbc.top/notes/algebra/advanced_algebra_and_analytic_geometry_ii_summary/</loc>
-         <lastmod>2026-08-24</lastmod>
-    </url>
-    <url>
          <loc>https://note.biscuitbc.top/notes/algebra/ent_exercises/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
@@ -33,19 +25,27 @@
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
+         <loc>https://note.biscuitbc.top/notes/algebra/abstract_algebra/summary/</loc>
+         <lastmod>2026-08-24</lastmod>
+    </url>
+    <url>
+         <loc>https://note.biscuitbc.top/notes/algebra/advanced_algebra_and_analytic_geometry_ii/summary/</loc>
+         <lastmod>2026-08-24</lastmod>
+    </url>
+    <url>
          <loc>https://note.biscuitbc.top/notes/analysis/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/analysis/analysis3_summary/</loc>
+         <loc>https://note.biscuitbc.top/notes/analysis/analysis3/summary/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/analysis/ordinary_differential_equations_summary/</loc>
+         <loc>https://note.biscuitbc.top/notes/analysis/ordinary_differential_equations/summary/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/analysis/real_analysis_summary/</loc>
+         <loc>https://note.biscuitbc.top/notes/analysis/real_analysis/summary/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
@@ -69,10 +69,6 @@
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/math/advanced_probability_summary/</loc>
-         <lastmod>2026-08-24</lastmod>
-    </url>
-    <url>
          <loc>https://note.biscuitbc.top/notes/math/cramer_rao/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
@@ -81,15 +77,19 @@
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/math/probability_summary/</loc>
+         <loc>https://note.biscuitbc.top/notes/math/advanced_probability/summary/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/math/stats_summary/</loc>
+         <loc>https://note.biscuitbc.top/notes/math/probability/summary/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/math/stochastic_processes_summary/</loc>
+         <loc>https://note.biscuitbc.top/notes/math/stats/summary/</loc>
+         <lastmod>2026-08-24</lastmod>
+    </url>
+    <url>
+         <loc>https://note.biscuitbc.top/notes/math/stochastic_processes/summary/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
@@ -97,15 +97,15 @@
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/tcs/applied_operations_research_summary/</loc>
+         <loc>https://note.biscuitbc.top/notes/tcs/applied_operations_research/summary/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/tcs/notes/</loc>
+         <loc>https://note.biscuitbc.top/notes/tcs/theoretical_computer_science_intro/notes/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
-         <loc>https://note.biscuitbc.top/notes/tcs/theoretical_computer_science_intro_summary/</loc>
+         <loc>https://note.biscuitbc.top/notes/tcs/theoretical_computer_science_intro/summary/</loc>
          <lastmod>2026-08-24</lastmod>
     </url>
     <url>
