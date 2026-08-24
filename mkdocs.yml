@@ -76,37 +76,37 @@ nav:
   - 概率与统计:
     - 概览: notes/math/index.md
     - 概率论:
-      - 课程总结: notes/math/probability_summary.md
+      - 课程总结: notes/math/probability/summary.md
     - 数理统计:
-      - 课程总结: notes/math/stats_summary.md
+      - 课程总结: notes/math/stats/summary.md
     - 随机过程:
-      - 课程总结: notes/math/stochastic_processes_summary.md
+      - 课程总结: notes/math/stochastic_processes/summary.md
     - 高等概率论:
-      - 课程总结: notes/math/advanced_probability_summary.md
+      - 课程总结: notes/math/advanced_probability/summary.md
   - 分析与方程:
     - notes/analysis/index.md
     - 数学分析 III:
-      - 课程总结: notes/analysis/analysis3_summary.md
+      - 课程总结: notes/analysis/analysis3/summary.md
     - 实变函数:
-      - 课程总结: notes/analysis/real_analysis_summary.md
+      - 课程总结: notes/analysis/real_analysis/summary.md
     - 常微分方程:
-      - 课程总结: notes/analysis/ordinary_differential_equations_summary.md
+      - 课程总结: notes/analysis/ordinary_differential_equations/summary.md
   - 代数与数论:
     - notes/algebra/index.md
     - 高等代数与解析几何 II:
-      - 课程总结: notes/algebra/advanced_algebra_and_analytic_geometry_ii_summary.md
+      - 课程总结: notes/algebra/advanced_algebra_and_analytic_geometry_ii/summary.md
     - 初等数论:
       - 提纲: notes/algebra/ent_outline.md
       - 练习题: notes/algebra/ent_exercises.md
     - 抽象代数:
-      - 课程总结: notes/algebra/abstract_algebra_summary.md
+      - 课程总结: notes/algebra/abstract_algebra/summary.md
   - 理论计算机科学:
     - notes/tcs/index.md
     - 理论计算机科学导引:
-      - 课程总结: notes/tcs/theoretical_computer_science_intro_summary.md
-      - 课程笔记: notes/tcs/notes.md
+      - 课程总结: notes/tcs/theoretical_computer_science_intro/summary.md
+      - 课程笔记: notes/tcs/theoretical_computer_science_intro/notes.md
     - 应用运筹学基础:
-      - 课程总结: notes/tcs/applied_operations_research_summary.md
+      - 课程总结: notes/tcs/applied_operations_research/summary.md
   - 计算机系统架构:
     - notes/arch/index.md
   - 关于: about.md
