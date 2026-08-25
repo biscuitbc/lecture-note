@@ -1,11 +1,5 @@
 # 理论计算机科学导引
 
-**Lecture Note**
-
-作者：Huijiao
-
-本页由 [Introduction-To-Theoretical-Computer-Science](https://github.com/biscuitbc/Introduction-To-Theoretical-Computer-Science) 仓库提交 [`ed9b735`](https://github.com/biscuitbc/Introduction-To-Theoretical-Computer-Science/commit/ed9b7356ffe2425bff57bee85051e4bc48c58c47) 的 TeX 源码直接转换，正文未作改写。
-
 ## 第 1 章　引子 {#chap:introduction}
 
 理论计算机科学经常把两个层面分开讨论：函数（function）描述要计算 *什么*，是问题的规格；程序（program）描述*如何*计算，是规格的一种实现。从函数到程序，就是把抽象的东西具体化。本讲先用二进制串（binary string）形式化"描述"，再比较函数与程序在数量上的差异。
